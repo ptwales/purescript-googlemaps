@@ -1,6 +1,6 @@
 module GMaps.MapOptions where
 
-import GMaps.LatLng
+import GMaps.LatLng (LatLng)
 
 data MapOptions = MapOptions
   { zoom :: Number

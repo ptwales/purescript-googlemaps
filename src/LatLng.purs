@@ -1,4 +1,7 @@
-module GMaps.LatLng where
+module GMaps.LatLng 
+  ( LatLng
+  , newLatLng
+  ) where
 
 import Data.Function.Uncurried (Fn2, runFn2)
 import Effect (Effect)

@@ -1,4 +1,9 @@
-module GMaps.InfoWindow where
+module GMaps.InfoWindow 
+  ( InfoWindow
+  , InfoWindowOptions
+  , newInfoWindow
+  , openInfoWindow
+  ) where
 
 import Prelude (Unit)
 import Effect (Effect)

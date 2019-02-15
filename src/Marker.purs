@@ -1,4 +1,11 @@
-module GMaps.Marker where
+module GMaps.Marker 
+  ( Marker
+  , MarkerOptions
+  , newMarker
+  , setMarkerPosition
+  , delMarker
+  , setMarkerLabel
+  ) where
 
 import Prelude (Unit)
 import Effect (Effect)

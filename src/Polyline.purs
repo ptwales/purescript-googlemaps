@@ -2,7 +2,8 @@ module GMaps.Polyline
   ( Polyline ()
   , PolylineOptions (..)
   , newPolyline
-  , setPolylinePath) where
+  , setPolylinePath
+  ) where
 
 import Prelude (Unit)
 import Effect (Effect)
