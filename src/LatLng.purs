@@ -6,7 +6,7 @@ module GMaps.LatLng
 import Data.Function.Uncurried (Fn2, runFn2)
 import Effect (Effect)
 
-data LatLng
+foreign import data LatLng :: Type
 
 foreign import newLatLngImpl :: Fn2 Number Number (Effect LatLng)
 
