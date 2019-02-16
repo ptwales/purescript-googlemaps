@@ -2,9 +2,21 @@ module GMaps.Marker
   ( Marker
   , MarkerOptions
   , newMarker
-  , setMarkerPosition
   , deleteMarker
-  , setMarkerLabel
+  --, setAnimation
+  , setClickable
+  --, setCursor
+  , setDraggable
+  , setIcon
+  , setLabel
+  , setMap
+  , setOpacity
+  , setOptions
+  , setPosition
+  --, setShape
+  , setTitle
+  , setVisible
+  , setZIndex
   ) where
 
 import Prelude (Unit, (<<<))
@@ -39,7 +51,7 @@ newtype MarkerOptions = MarkerOptions
   --, animation :: Maybe Animation
   , clickable :: Boolean
   , crossOnDrag :: Boolean
-  --, cursor :: Maybe String
+  --, cursor :: Maybe Cursor
   , draggable :: Boolean
   , icon :: Maybe String
   , label :: Maybe Char
@@ -72,25 +84,28 @@ defMarkerOptions position = MarkerOptions
 -- GMaps either wants a marker icon or undefined.
 foreign import undefined :: forall a. a
 
+orUndefined :: forall a. Maybe a -> a
+orUndefined = fromMaybe undefined
+
+runMarkerOptions :: MarkerOptions -> MarkerOptionsR
+runMarkerOptions (MarkerOptions options) = options 
+  { map = orUndefined options.map
+  --, anchorPoint = orUndefined options.anchorPoint
+  --, animation = orUndefined options.animation
+  --, cursor = orUndefined options.cursor
+  , icon = orUndefined options.icon
+  , label = orUndefined options.label
+  --, shape = orUndefined options.shape
+  , title = orUndefined options.title
+  , zIndex = orUndefined options.zIndex
+  }
+
 foreign import data Marker :: Type
 
 foreign import newMarkerImpl :: Fn1 MarkerOptionsR (Effect Marker)
 
 newMarker :: MarkerOptions -> Effect Marker
 newMarker = runFn1 newMarkerImpl <<< runMarkerOptions
-  where runMaybe :: forall a. Maybe a -> a
-        runMaybe = fromMaybe undefined
-        runMarkerOptions (MarkerOptions options) = options 
-          { map = runMaybe options.map
-          --, anchorPoint = runMAybe options.anchorPoint
-          --, animation = runMAybe options.animation
-          --, cursor = runMAybe options.cursor
-          , icon = runMaybe options.icon
-          , label = runMaybe options.label
-          --, shape = runMaybe options.shape
-          , title = runMaybe options.title
-          , zIndex = runMaybe options.zIndex
-          }
 
 foreign import removeMarkerImpl :: Fn1 Marker (Effect Marker)
 
@@ -102,12 +117,73 @@ foreign import deleteMarkerImpl :: Fn1 Marker (Effect Unit)
 deleteMarker :: Marker -> Effect Unit
 deleteMarker = runFn1 deleteMarkerImpl
 
-foreign import setMarkerPositionImpl :: Fn2 Marker LatLng (Effect Marker)
+--foreign import setAnimationImpl :: Fn2 Marker ?umm (Effect Marker)
+--
+--setAnimation :: Marker -> Animation -> Effect Marker
+--setAnimation marker = runFn2 setAnimationImpl marker orNull
 
-setMarkerPosition :: Marker -> LatLng -> Effect Marker
-setMarkerPosition = runFn2 setMarkerPositionImpl
+foreign import setClickableImpl :: Fn2 Marker Boolean (Effect Marker)
 
-foreign import setMarkerLabelImpl :: Fn2 Marker String (Effect Marker)
+setClickable :: Marker -> Boolean -> Effect Marker
+setClickable = runFn2 setClickableImpl
 
-setMarkerLabel :: Marker -> String -> Effect Marker
-setMarkerLabel = runFn2 setMarkerLabelImpl
+--foreign import setCursorImpl :: Fn2 Marker ?umm (Effect Marker)
+--
+--setCursor :: Marker -> Cursor -> Effect Marker
+--setCursor marker cursor = runFn2 setCursorImpl marker (?umm cursor)
+
+foreign import setDraggableImpl :: Fn2 Marker Boolean (Effect Marker)
+
+setDraggable :: Marker -> Boolean -> Effect Marker
+setDraggable = runFn2 setDraggableImpl
+
+foreign import setIconImpl :: Fn2 Marker String (Effect Marker)
+
+setIcon :: Marker -> Maybe String -> Effect Marker
+setIcon marker = runFn2 setIconImpl marker <<< orUndefined -- orNull?
+
+foreign import setLabelImpl :: Fn2 Marker Char (Effect Marker)
+
+setLabel :: Marker -> Maybe Char -> Effect Marker
+setLabel marker = runFn2 setLabelImpl marker <<< orUndefined -- orNull?
+
+foreign import setMapImpl :: Fn2 Marker Map (Effect Marker)
+
+-- See removeMarker to `setMap(null)`
+setMap :: Marker -> Map -> Effect Marker
+setMap marker = runFn2 setMapImpl marker
+
+foreign import setOpacityImpl :: Fn2 Marker Number (Effect Marker)
+
+setOpacity :: Marker -> Number -> Effect Marker
+setOpacity = runFn2 setOpacityImpl
+
+foreign import setOptionsImpl :: Fn2 Marker MarkerOptionsR (Effect Marker)
+
+setOptions :: Marker -> MarkerOptions -> Effect Marker
+setOptions marker = runFn2 setOptionsImpl marker <<< runMarkerOptions
+
+foreign import setPositionImpl :: Fn2 Marker LatLng (Effect Marker)
+
+setPosition :: Marker -> LatLng -> Effect Marker
+setPosition = runFn2 setPositionImpl
+
+--foreign import setShapeImpl :: Fn2 Marker MarkerShape (Effect Marker)
+--
+--setShape :: Marker -> Maybe MarkerShape -> Effect Marker
+--setShape marker = runFn2 setShapeImpl <<< orNull
+
+foreign import setTitleImpl :: Fn2 Marker String (Effect Marker)
+
+setTitle :: Marker -> String -> Effect Marker
+setTitle = runFn2 setTitleImpl
+
+foreign import setVisibleImpl :: Fn2 Marker Boolean (Effect Marker)
+
+setVisible :: Marker -> Boolean -> Effect Marker
+setVisible = runFn2 setVisibleImpl
+
+foreign import setZIndexImpl :: Fn2 Marker Number (Effect Marker)
+
+setZIndex :: Marker -> Number -> Effect Marker
+setZIndex = runFn2 setZIndexImpl
