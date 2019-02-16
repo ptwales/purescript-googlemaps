@@ -9,23 +9,18 @@ import Prelude (Unit)
 import Effect (Effect)
 import GMaps.Map (Map)
 import GMaps.Marker (Marker)
-import Data.Function.Uncurried (Fn1, runFn1, Fn3, runFn3)
-
-data InfoWindowOptions = InfoWindowOptions
-  { content :: String
-  }
-
-foreign import data InfoWindow :: Type
+import Data.Function.Uncurried (Fn1, Fn3, runFn1, runFn3)
 
 type InfoWindowOptionsR = { content :: String }
 
-runInfoWindowOptions :: InfoWindowOptions -> InfoWindowOptionsR
-runInfoWindowOptions (InfoWindowOptions o) = { content: o.content }
+newtype InfoWindowOptions = InfoWindowOptions InfoWindowOptionsR
+
+foreign import data InfoWindow :: Type
 
 foreign import newInfoWindowImpl :: Fn1 InfoWindowOptionsR (Effect InfoWindow)
 
-newInfoWindow :: InfoWindowOptionsR -> Effect InfoWindow
-newInfoWindow = runFn1 newInfoWindowImpl
+newInfoWindow :: InfoWindowOptions -> Effect InfoWindow
+newInfoWindow (InfoWindowOptions options) = runFn1 newInfoWindowImpl options
 
 foreign import openInfoWindowImpl :: Fn3 InfoWindow Map Marker (Effect Unit)
 
