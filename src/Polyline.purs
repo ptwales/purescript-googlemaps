@@ -1,6 +1,6 @@
 module GMaps.Polyline
-  ( Polyline ()
-  , PolylineOptions (..)
+  ( Polyline
+  , PolylineOptions
   , newPolyline
   , setPolylinePath
   ) where
@@ -14,14 +14,7 @@ import Data.Function.Uncurried (Fn1, runFn1, Fn2, runFn2)
 
 foreign import data Polyline :: Type
 
-type PolylineOptionsR = { geodescic :: Boolean
-                        , strokeColor :: String
-                        , strokeOpacity :: Number
-                        , strokeWeight :: Number
-                        , map :: Map
-                        }
-
-data PolylineOptions = PolylineOptions
+type PolylineOptionsR = 
   { geodescic :: Boolean
   , strokeColor :: String
   , strokeOpacity :: Number
@@ -29,21 +22,12 @@ data PolylineOptions = PolylineOptions
   , map :: Map
   }
 
-runPolylineOptions :: PolylineOptions -> PolylineOptionsR
-runPolylineOptions (PolylineOptions o) = { geodescic: o.geodescic
-                                         , strokeColor: o.strokeColor
-                                         , strokeOpacity: o.strokeOpacity
-                                         , strokeWeight: o.strokeWeight
-                                         , map: o.map
-                                         }
+newtype PolylineOptions = PolylineOptions PolylineOptionsR
 
 foreign import newPolylineImpl :: Fn1 PolylineOptionsR (Effect Polyline)
 
-newPolylineFFI :: PolylineOptionsR -> Effect Polyline
-newPolylineFFI = runFn1 newPolylineImpl
-
 newPolyline :: PolylineOptions -> Effect Polyline
-newPolyline o = newPolylineFFI (runPolylineOptions o)
+newPolyline (PolylineOptions options) = runFn1 newPolylineImpl options
 
 foreign import setPolylinePathImpl :: Fn2 Polyline (MVCArray LatLng) (Effect Unit)
 
