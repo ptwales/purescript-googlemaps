@@ -6,9 +6,16 @@ exports.newMarkerImpl = function(opts) {
   }
 }
 
-exports.delMarkerImpl = function(marker) {
+exports.removeMarkerImpl = function(marker) {
   return function() {
     marker.setMap(null);
+    return marker;
+  }
+}
+
+exports.deleteMarkerImpl = function(marker) {
+  return function() {
+    marker = null;
     return;
   }
 }
@@ -16,14 +23,14 @@ exports.delMarkerImpl = function(marker) {
 exports.setMarkerPositionImpl = function(marker, latlng) {
   return function() {
     marker.setPosition(latlng);
-    return;
+    return marker;
   }
 }
 
 exports.setMarkerLabelImpl = function(marker, label) {
   return function() {
     marker.setLabel(label);
-    return;
+    return marker;
   }
 }
 

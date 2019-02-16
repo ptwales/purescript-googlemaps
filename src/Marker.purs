@@ -3,61 +3,61 @@ module GMaps.Marker
   , MarkerOptions
   , newMarker
   , setMarkerPosition
-  , delMarker
+  , deleteMarker
   , setMarkerLabel
   ) where
 
-import Prelude (Unit)
-import Effect (Effect)
+import Prelude (Unit, (<<<))
+import Data.Function.Uncurried (Fn1, runFn1, Fn2, runFn2)
 import Data.Maybe (Maybe, fromMaybe)
+import Effect (Effect)
 import GMaps.LatLng (LatLng)
 import GMaps.Map (Map)
-import Data.Function.Uncurried (Fn1, runFn1, Fn2, runFn2)
 
-data MarkerOptions = MarkerOptions
+type MarkerOptionsR =
+  { position :: LatLng
+  , map :: Map
+  , title :: String
+  , icon :: String
+  }
+
+newtype MarkerOptions = MarkerOptions
   { position :: LatLng
   , map :: Map
   , title :: String
   , icon :: Maybe String
   }
 
-foreign import data Marker :: Type
-
 -- GMaps either wants a marker icon or undefined.
 foreign import undefined :: forall a. a
 
-type MarkerOptionsR = { position :: LatLng
-                      , map :: Map
-                      , title :: String
-                      , icon :: String
-                      }
-
-runMarkerOptions :: MarkerOptions -> MarkerOptionsR
-runMarkerOptions (MarkerOptions o) = { position: o.position
-                                     , map: o.map
-                                     , title: o.title
-                                     , icon: fromMaybe undefined o.icon
-                                     }
+foreign import data Marker :: Type
 
 foreign import newMarkerImpl :: Fn1 MarkerOptionsR (Effect Marker)
 
-newMarkerFFI :: MarkerOptionsR -> Effect Marker
-newMarkerFFI = runFn1 newMarkerImpl
-
 newMarker :: MarkerOptions -> Effect Marker
-newMarker opts = newMarkerFFI (runMarkerOptions opts)
+newMarker = runFn1 newMarkerImpl <<< runMarkerOptions
+  where runMaybe = fromMaybe undefined
+        runMarkerOptions (MarkerOptions options) = options 
+          { icon = runMaybe options.icon
+          }
 
-foreign import setMarkerPositionImpl :: Fn2 Marker LatLng (Effect Unit)
+foreign import removeMarkerImpl :: Fn1 Marker (Effect Marker)
 
-setMarkerPosition :: Marker -> LatLng -> Effect Unit
+removeMarker :: Marker -> Effect Marker
+removeMarker = runFn1 removeMarkerImpl
+
+foreign import deleteMarkerImpl :: Fn1 Marker (Effect Unit)
+
+deleteMarker :: Marker -> Effect Unit
+deleteMarker = runFn1 deleteMarkerImpl
+
+foreign import setMarkerPositionImpl :: Fn2 Marker LatLng (Effect Marker)
+
+setMarkerPosition :: Marker -> LatLng -> Effect Marker
 setMarkerPosition = runFn2 setMarkerPositionImpl
 
-foreign import delMarkerImpl :: Fn1 Marker (Effect Unit)
+foreign import setMarkerLabelImpl :: Fn2 Marker String (Effect Marker)
 
-delMarker :: Marker -> Effect Unit
-delMarker = runFn1 delMarkerImpl
-
-foreign import setMarkerLabelImpl :: Fn2 Marker String (Effect Unit)
-
-setMarkerLabel :: Marker -> String -> Effect Unit
+setMarkerLabel :: Marker -> String -> Effect Marker
 setMarkerLabel = runFn2 setMarkerLabelImpl
