@@ -3,6 +3,19 @@ module GMaps.Marker
   , MarkerOptions
   , newMarker
   , deleteMarker
+  --, getAnimation
+  , getClickable
+  --, getCursor
+  , getDraggable
+  , getIcon
+  , getLabel
+  , getMap
+  , getOpacity
+  , getPosition
+  --, getShape
+  , getTitle
+  , getVisible
+  , getZIndex
   --, setAnimation
   , setClickable
   --, setCursor
@@ -21,8 +34,9 @@ module GMaps.Marker
 
 import Prelude (Unit, (<<<))
 import Data.Function.Uncurried (Fn1, runFn1, Fn2, runFn2)
-import Data.Maybe (Maybe(Nothing), fromMaybe)
+import Data.Maybe (Maybe(..), fromMaybe)
 import Effect (Effect)
+import Foreign (isNull, unsafeToForeign)
 import GMaps.LatLng (LatLng)
 import GMaps.Map (Map)
 
@@ -87,8 +101,11 @@ foreign import undefined :: forall a. a
 orUndefined :: forall a. Maybe a -> a
 orUndefined = fromMaybe undefined
 
-runMarkerOptions :: MarkerOptions -> MarkerOptionsR
-runMarkerOptions (MarkerOptions options) = options 
+maybeNull :: forall a. a -> Maybe a
+maybeNull a = if isNull (unsafeToForeign a) then Nothing else Just a
+
+runMakerOptions :: MarkerOptions -> MarkerOptionsR
+runMakerOptions (MarkerOptions options) = options 
   { map = orUndefined options.map
   --, anchorPoint = orUndefined options.anchorPoint
   --, animation = orUndefined options.animation
@@ -105,7 +122,7 @@ foreign import data Marker :: Type
 foreign import newMarkerImpl :: Fn1 MarkerOptionsR (Effect Marker)
 
 newMarker :: MarkerOptions -> Effect Marker
-newMarker = runFn1 newMarkerImpl <<< runMarkerOptions
+newMarker = runFn1 newMarkerImpl <<< runMakerOptions
 
 foreign import removeMarkerImpl :: Fn1 Marker (Effect Marker)
 
@@ -116,6 +133,71 @@ foreign import deleteMarkerImpl :: Fn1 Marker (Effect Unit)
 
 deleteMarker :: Marker -> Effect Unit
 deleteMarker = runFn1 deleteMarkerImpl
+
+--foreign import getAnimationImpl :: Fn1 Marker Animation
+--
+--getAnimation :: Marker ->  Animation
+--getAnimation = runFn1 getAnimationImpl
+
+foreign import getClickableImpl :: Fn1 Marker Boolean
+
+getClickable :: Marker -> Boolean
+getClickable = runFn1 getClickableImpl
+
+--foreign import getCursorImpl :: Fn1 Marker Cursor
+--
+--getCursor :: Marker ->  Boolean
+--getCursor = runFn1 getCursorImpl
+
+foreign import getDraggableImpl :: Fn1 Marker Boolean
+
+getDraggable :: Marker -> Boolean
+getDraggable = runFn1 getDraggableImpl
+  
+foreign import getIconImpl :: Fn1 Marker String
+
+getIcon :: Marker -> Maybe String
+getIcon = maybeNull <<< runFn1 getIconImpl
+
+foreign import getLabelImpl :: Fn1 Marker Char
+
+getLabel :: Marker -> Maybe Char
+getLabel = maybeNull <<< runFn1 getLabelImpl
+  
+foreign import getMapImpl :: Fn1 Marker Map
+
+getMap :: Marker -> Maybe Map
+getMap = maybeNull <<< runFn1 getMapImpl
+
+foreign import getOpacityImpl :: Fn1 Marker Number 
+
+getOpacity :: Marker -> Number
+getOpacity = runFn1 getOpacityImpl
+
+foreign import getPositionImpl :: Fn1 Marker LatLng
+
+getPosition :: Marker -> LatLng
+getPosition = runFn1 getPositionImpl
+
+--foreign import getShapeImpl :: Fn1 Marker Shape
+--
+--getShape :: Marker -> Shape
+--getShape = runFn1 getShapeImpl
+
+foreign import getTitleImpl :: Fn1 Marker String
+
+getTitle :: Marker -> String
+getTitle = runFn1 getTitleImpl
+
+foreign import getVisibleImpl :: Fn1 Marker Boolean
+
+getVisible :: Marker -> Boolean
+getVisible = runFn1 getVisibleImpl
+
+foreign import getZIndexImpl :: Fn1 Marker Number
+
+getZIndex :: Marker -> Number
+getZIndex = runFn1 getZIndexImpl
 
 --foreign import setAnimationImpl :: Fn2 Marker ?umm (Effect Marker)
 --
@@ -161,7 +243,7 @@ setOpacity = runFn2 setOpacityImpl
 foreign import setOptionsImpl :: Fn2 Marker MarkerOptionsR (Effect Marker)
 
 setOptions :: Marker -> MarkerOptions -> Effect Marker
-setOptions marker = runFn2 setOptionsImpl marker <<< runMarkerOptions
+setOptions marker = runFn2 setOptionsImpl marker <<< runMakerOptions
 
 foreign import setPositionImpl :: Fn2 Marker LatLng (Effect Marker)
 

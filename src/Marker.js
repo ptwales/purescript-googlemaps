@@ -20,6 +20,58 @@ exports.deleteMarkerImpl = function(marker) {
   }
 }
 
+//exports.getAnimationImpl = function(marker) {
+//  return marker.getAnimation();
+//}
+
+exports.getClickableImpl = function(marker) {
+  return marker.getClickable();
+}
+
+//exports.getCursorImpl = function(marker) {
+//  return marker.getCursor();
+//}
+
+exports.getDraggableImpl = function(marker) {
+  return marker.getDraggable();
+}
+
+exports.getIconImpl = function(marker) {
+  return marker.getIcon();
+}
+
+exports.getLabelImpl = function(marker) {
+  return marker.getLabel();
+}
+
+exports.getMapImpl = function(marker) {
+  return marker.getMap();
+}
+
+exports.getOpacityImpl = function(marker) {
+  return marker.getOpacity();
+}
+
+exports.getPositionImpl = function(marker) {
+  return marker.getPosition();
+}
+
+//exports.getShapeImpl = function(marker) {
+//  return marker.getShape();
+//}
+
+exports.getTitleImpl = function(marker) {
+  return marker.getTitle();
+}
+
+exports.getVisibleImpl = function(marker) {
+  return marker.getVisible();
+}
+
+exports.getZIndexImpl = function(marker) {
+  return marker.getZIndex();
+}
+
 //exports.setAnimationImpl = function(marker, animation) {
 //  return function() {
 //    marker.setAnimation(animation);
