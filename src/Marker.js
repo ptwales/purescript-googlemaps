@@ -53,7 +53,7 @@ exports.getOpacityImpl = function(marker) {
 }
 
 exports.getPositionImpl = function(marker) {
-  return marker.getPosition();
+  return marker.getPosition();getPosition
 }
 
 //exports.getShapeImpl = function(marker) {

@@ -1,6 +1,7 @@
 module GMaps.Marker 
   ( Marker
   , MarkerOptions
+  , defMarkerOptions
   , newMarker
   , deleteMarker
   --, getAnimation

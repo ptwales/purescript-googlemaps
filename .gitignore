@@ -1,3 +1,4 @@
+.env
 .psci/
 .psci_modules/
 .psc-ide-port
