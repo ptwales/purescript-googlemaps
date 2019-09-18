@@ -2,7 +2,7 @@
 .psci/
 .psci_modules/
 .psc-ide-port
-bower_components/
+.spago/
 node_modules/
 yarn-error.log
 /output/
