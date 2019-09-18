@@ -8,15 +8,16 @@ import Data.Maybe (Maybe(..))
 import Effect.Class (liftEffect)
 import GMaps.LatLng (newLatLng)
 import GMaps.Marker as G
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Util (initMarker, setMarker, testIso)
+import Test.Types (Spec')
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   initOptionsSpecs
   setterSpecs
 
-setterSpecs :: Spec Unit
+setterSpecs :: Spec' Unit
 setterSpecs = do
   describe "Test Getters and Setters" do
     it "Can set a marker's position" do
@@ -69,7 +70,7 @@ setterSpecs = do
       let set = setMarker G.setZIndex
        in testIso 3.0 set G.getZIndex
 
-initOptionsSpecs :: Spec Unit
+initOptionsSpecs :: Spec' Unit
 initOptionsSpecs = do
   describe "Test initialization options" do
     it "Change animation from default" $

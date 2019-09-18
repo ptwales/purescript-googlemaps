@@ -13,9 +13,10 @@ import Test.InfoWindow as InfoWindow
 import Test.LatLng as LatLng
 import Test.Map as Map
 import Test.Marker as Marker
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (fail)
 import Test.Spec.Mocha (runMocha)
+import Test.Types (Spec')
 
 main :: Effect Unit
 main = do
@@ -29,6 +30,6 @@ main = do
     describe "GMaps.Marker" Marker.specs
     describe "GMaps.Geometry.Poly" Poly.specs
 
-withMap :: Maybe G.Map -> (G.Map -> Spec Unit) -> Spec Unit
+withMap :: Maybe G.Map -> (G.Map -> Spec' Unit) -> Spec' Unit
 withMap googleMap suite = maybe failedToLoadMap suite googleMap
   where failedToLoadMap = it "CRITICAL" $ fail "FAILED TO LOAD MAP"

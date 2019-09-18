@@ -2,6 +2,8 @@ module Test.Geometry.Poly
   ( specs
   ) where
 
+import Prelude
+
 import Effect.Class (liftEffect)
 import GMaps.Geometry.Poly as Poly
 import GMaps.LatLng (LatLngLiteral)
@@ -9,9 +11,9 @@ import GMaps.LatLng (newLatLng, fromLiteral) as G
 import GMaps.Draw.Polygon (newPolygon, defPolygonOptions) as G
 import GMaps.Draw.Polyline (newPolyline, defPolylineOptions) as G
 import Test.Defaults as Def
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
-import Prelude
+import Test.Types (Spec')
 
 insideBermuda :: LatLngLiteral
 insideBermuda = { lat: 24.886, lng: -70.269 }
@@ -19,7 +21,7 @@ insideBermuda = { lat: 24.886, lng: -70.269 }
 whiteHouse :: LatLngLiteral
 whiteHouse = { lat: 38.8976763, lng: -77.0365298 }
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   describe "containsLocation" do
     it "Returns true when inside the bermuda triangle" do

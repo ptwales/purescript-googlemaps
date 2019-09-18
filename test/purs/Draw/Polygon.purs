@@ -8,10 +8,11 @@ import GMaps.LatLng (toLiteral) as LatLng
 import GMaps.Draw as D
 import GMaps.Draw.Polygon as P
 import Test.Defaults (altPath) as Def
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Util (initPolygon, setPolygon, testIso)
+import Test.Types (Spec')
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   describe "Polygon specific Getters and setters" $
     setterSpecs
@@ -22,7 +23,7 @@ specs = do
   describe "Common Poly Intialization options" $
     polyOptionsSpecs
 
-setterSpecs :: Spec Unit
+setterSpecs :: Spec' Unit
 setterSpecs = do
   it "Can set mutiple paths at a time" $
     let set = setPolygon P.setPaths
@@ -41,14 +42,14 @@ setterSpecs = do
           ]
     in testIso paths set get
 
-initOptionSpecs :: Spec Unit
+initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   it "Change path from default" $
     let set = initPolygon (_ { paths = _ })
         get = map (map LatLng.toLiteral) <<< P.getPaths
     in testIso [ Def.altPath ] set get
 
-polySetterSpecs :: Spec Unit
+polySetterSpecs :: Spec' Unit
 polySetterSpecs = do
   it "Can set as draggable" $
     testIso true (setPolygon D.setDraggable) D.getDraggable
@@ -60,7 +61,7 @@ polySetterSpecs = do
   it "Can set as invisible" $
     testIso false (setPolygon D.setVisible) D.getVisible
 
-polyOptionsSpecs :: Spec Unit
+polyOptionsSpecs :: Spec' Unit
 polyOptionsSpecs = do
   it "Change draggable from default" $
     let set = initPolygon (_ { draggable = _ })

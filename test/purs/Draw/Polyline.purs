@@ -7,10 +7,11 @@ import Prelude
 import GMaps.LatLng (toLiteral) as LatLng
 import GMaps.Draw as D
 import Test.Defaults (altPath) as Def
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Util (initPolyline, setPolyline, testIso)
+import Test.Types (Spec')
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   describe "Test initialization options" $
     initOptionSpecs
@@ -19,14 +20,14 @@ specs = do
   describe "Common Poly Intialization options" $
     polyOptionsSpecs
 
-initOptionSpecs :: Spec Unit
+initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   it "Change path from default" $
     let set = initPolyline (_ { path = _ })
         get = map LatLng.toLiteral <<< D.getPath
     in testIso Def.altPath set get
 
-polySetterSpecs :: Spec Unit
+polySetterSpecs :: Spec' Unit
 polySetterSpecs = do
   it "Can set as draggable" $
     testIso true (setPolyline D.setDraggable) D.getDraggable
@@ -38,7 +39,7 @@ polySetterSpecs = do
   it "Can set as invisible" $
     testIso false (setPolyline D.setVisible) D.getVisible
 
-polyOptionsSpecs :: Spec Unit
+polyOptionsSpecs :: Spec' Unit
 polyOptionsSpecs = do
   it "Change draggable from default" $
     let set = initPolyline (_ { draggable = _ })

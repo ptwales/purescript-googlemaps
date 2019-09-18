@@ -8,15 +8,16 @@ import Data.Maybe (Maybe(..))
 import Effect.Class (liftEffect)
 import GMaps.InfoWindow as G
 import GMaps.LatLng (newLatLng)
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Util (initWindow, setWindow, testIso)
+import Test.Types (Spec')
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   initOptionSpecs
   setterSpecs
 
-initOptionSpecs :: Spec Unit
+initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   describe "Test initialization options" do
     it "Change content from default" $
@@ -29,7 +30,7 @@ initOptionSpecs = do
       let set = initWindow (_ { zIndex = _ })
        in testIso (Just 8.0) set G.getZIndex
 
-setterSpecs :: Spec Unit
+setterSpecs :: Spec' Unit
 setterSpecs = do
   describe "Test Getters and Setters" do
     it "Can set the position" do

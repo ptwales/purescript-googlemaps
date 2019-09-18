@@ -1,4 +1,4 @@
-module Test.LatLng 
+module Test.LatLng
   ( specs
   ) where
 
@@ -9,17 +9,18 @@ import Effect.Class (liftEffect)
 import GMaps.LatLng as G
 import Math (round)
 import Test.Defaults as Def
-import Test.Spec (Spec, describe, it)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
+import Test.Types (Spec')
 
 shouldAlmostEqual :: Number -> Number -> Aff Unit
-shouldAlmostEqual x y = 
+shouldAlmostEqual x y =
   let r = 10000000.0
       rx = round (x * r) / r
       ry = round (y * r) / r
    in rx `shouldEqual` ry
 
-specs :: Spec Unit
+specs :: Spec' Unit
 specs = do
   describe "LatLng's instances" do
     it "LatLngs with the same coords are equal" do
