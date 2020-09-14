@@ -1,0 +1,46 @@
+name: "Test on push"
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: cache yarn dependencies
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-yarn-${{ hashFiles('package.json') }}
+          path: node_modules
+
+      - name: install
+        run: yarn install
+
+      - name: cache purescript dependencies
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-spago-${{ hashFiles('**/*.dhall') }}
+          path: |
+            .spago
+            output
+
+      - name: bundle test code
+        run: yarn spago bundle-app -m Test.Main -t dist/bundle.js
+
+      - name: build test page
+        run: yarn pug test/pug -o dist
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+
+      - name: mocha tests
+        run: yarn mocha-headless-chrome -a no-sandbox -f dist/index.html
