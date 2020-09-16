@@ -44,3 +44,14 @@ jobs:
 
       - name: mocha tests
         run: yarn mocha-headless-chrome -a no-sandbox -f dist/index.html
+
+  # Automatically merge dependabot PRs if the tests pass and its not a major
+  # version change.
+  auto-merge:
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.event_name == 'pull_request' github.base_ref == 'master' && github.actor == 'dependabot[bot]'
+    steps:
+      - name: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          github-token: ${{ secrets.mytoken }}
