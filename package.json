@@ -2,12 +2,13 @@
   "scripts": {
     "build": "spago build",
     "watch": "spago build --watch",
-    "test:build": "dotenv pug3 test/pug -- -o dist && spago bundle-app -m Test.Main -t dist/bundle.js",
+    "test:build": "dotenv pug3 test/pug -- -o dist && spago bundle --module Test.Main --outfile dist/bundle.js",
     "test:run": "mocha-headless-chrome -a no-sandbox -f dist/index.html"
   },
   "devDependencies": {
     "@tokilabs/pug3-cli": "^3.0.1",
     "dotenv-cli": "^7.4.2",
+    "esbuild": "^0.24.0",
     "mocha": "^10.7.3",
     "mocha-headless-chrome": "^3.1.0",
     "purescript": "^0.15.15",
