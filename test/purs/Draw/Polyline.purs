@@ -22,7 +22,8 @@ specs = do
 initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   it "Change path from default"
-    $ let
+    $
+      let
         set = initPolyline (_ { path = _ })
 
         get = map LatLng.toLiteral <<< D.getPath
@@ -36,7 +37,8 @@ polySetterSpecs = do
   it "Can set as editable"
     $ testIso true (setPolyline D.setEditable) D.getEditable
   it "Can set path"
-    $ let
+    $
+      let
         get = map LatLng.toLiteral <<< D.getPath
       in
         testIso Def.altPath (setPolyline D.setPath) get
@@ -46,17 +48,20 @@ polySetterSpecs = do
 polyOptionsSpecs :: Spec' Unit
 polyOptionsSpecs = do
   it "Change draggable from default"
-    $ let
+    $
+      let
         set = initPolyline (_ { draggable = _ })
       in
         testIso true set D.getDraggable
   it "Change editable from default"
-    $ let
+    $
+      let
         set = initPolyline (_ { editable = _ })
       in
         testIso true set D.getEditable
   it "Change visible from default"
-    $ let
+    $
+      let
         set = initPolyline (_ { visible = _ })
       in
         testIso true set D.getVisible

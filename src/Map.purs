@@ -40,75 +40,75 @@ import GMaps.Map.Types (GestureHandling, MapTypeId)
 import Web.DOM (Element)
 import Prelude (show, (<<<), (<$>))
 
-type MapOptionsR
-  = { center :: LatLngLiteral
-    , backgroundColor :: String
-    , clickableIcons :: Boolean
-    , controlSize :: Number
-    , disableDefaultUI :: Boolean
-    , disableDoubleClickZoom :: Boolean
-    , draggable :: Boolean
-    , draggableCursor :: String
-    --, fullscreenControl :: Boolean
-    --, fullscreenControlOptions :: FullscreenControlOptions
-    , gestureHandling :: String
-    , heading :: Number
-    , keyboardShortcuts :: Boolean
-    --, mapTypeControl :: Boolean
-    --, mapTypeControlOptions :: MapTypeControlOptions
-    , mapTypeId :: String
-    , maxZoom :: Int
-    , minZoom :: Int
-    , noClear :: Boolean
-    --, panControl :: Boolean -- disabled v3.22
-    --, panControlOptions :: PanControlOptions  -- disabled v3.22
-    --, restriction :: MapRestriction
-    --, rotateControl :: Boolean
-    --, rotateControlOptions :: RotateControlOptions
-    --, scaleControl :: Boolean
-    --, scaleControlOptions :: ScaleControlOptions
-    , scrollwheel :: Boolean
-    --, streetView :: StreetViewPanorama
-    --, streetViewControl :: Boolean
-    --, streetViewControlOptions :: StreetViewControlOptions
-    --, styles :: Array MapTypeStyle
-    --, tilt :: Nothing
-    , zoom :: Int
-    --, zoomControl :: Boolean
-    --, zoomControlOptions :: ZoomControlOptions
-    }
+type MapOptionsR =
+  { center :: LatLngLiteral
+  , backgroundColor :: String
+  , clickableIcons :: Boolean
+  , controlSize :: Number
+  , disableDefaultUI :: Boolean
+  , disableDoubleClickZoom :: Boolean
+  , draggable :: Boolean
+  , draggableCursor :: String
+  --, fullscreenControl :: Boolean
+  --, fullscreenControlOptions :: FullscreenControlOptions
+  , gestureHandling :: String
+  , heading :: Number
+  , keyboardShortcuts :: Boolean
+  --, mapTypeControl :: Boolean
+  --, mapTypeControlOptions :: MapTypeControlOptions
+  , mapTypeId :: String
+  , maxZoom :: Int
+  , minZoom :: Int
+  , noClear :: Boolean
+  --, panControl :: Boolean -- disabled v3.22
+  --, panControlOptions :: PanControlOptions  -- disabled v3.22
+  --, restriction :: MapRestriction
+  --, rotateControl :: Boolean
+  --, rotateControlOptions :: RotateControlOptions
+  --, scaleControl :: Boolean
+  --, scaleControlOptions :: ScaleControlOptions
+  , scrollwheel :: Boolean
+  --, streetView :: StreetViewPanorama
+  --, streetViewControl :: Boolean
+  --, streetViewControlOptions :: StreetViewControlOptions
+  --, styles :: Array MapTypeStyle
+  --, tilt :: Nothing
+  , zoom :: Int
+  --, zoomControl :: Boolean
+  --, zoomControlOptions :: ZoomControlOptions
+  }
 
-type MapOptions
-  = { center :: LatLngLiteral
-    , backgroundColor :: Maybe String
-    , clickableIcons :: Boolean
-    , controlSize :: Maybe Number
-    , disableDefaultUI :: Boolean
-    , disableDoubleClickZoom :: Boolean
-    , draggable :: Boolean
-    , draggableCursor :: Maybe String
-    --, fullscreenControlOptions :: Maybe FullscreenControlOptions
-    , gestureHandling :: Maybe GestureHandling
-    , heading :: Number
-    , keyboardShortcuts :: Boolean
-    --, mapTypeControlOptions :: Maybe MapTypeControlOptions
-    , mapTypeId :: Maybe MapTypeId
-    , maxZoom :: Maybe Int
-    , minZoom :: Maybe Int
-    , noClear :: Boolean
-    --, panControl :: Boolean -- disabled v3.22
-    --, panControlOptions :: PanControlOptions  -- disabled v3.22
-    --, restriction :: Maybe MapRestriction
-    --, rotateControlOptions :: Maybe RotateControlOptions
-    --, scaleControlOptions :: Maybe ScaleControlOptions
-    , scrollwheel :: Boolean
-    --, streetView :: Maybe StreetViewPanorama
-    --, streetViewControlOptions :: Maybe StreetViewControlOptions
-    --, styles :: Array MapTypeStyle
-    --, tilt :: Nothing
-    , zoom :: Int
-    --, zoomControlOptions :: Maybe ZoomControlOptions
-    }
+type MapOptions =
+  { center :: LatLngLiteral
+  , backgroundColor :: Maybe String
+  , clickableIcons :: Boolean
+  , controlSize :: Maybe Number
+  , disableDefaultUI :: Boolean
+  , disableDoubleClickZoom :: Boolean
+  , draggable :: Boolean
+  , draggableCursor :: Maybe String
+  --, fullscreenControlOptions :: Maybe FullscreenControlOptions
+  , gestureHandling :: Maybe GestureHandling
+  , heading :: Number
+  , keyboardShortcuts :: Boolean
+  --, mapTypeControlOptions :: Maybe MapTypeControlOptions
+  , mapTypeId :: Maybe MapTypeId
+  , maxZoom :: Maybe Int
+  , minZoom :: Maybe Int
+  , noClear :: Boolean
+  --, panControl :: Boolean -- disabled v3.22
+  --, panControlOptions :: PanControlOptions  -- disabled v3.22
+  --, restriction :: Maybe MapRestriction
+  --, rotateControlOptions :: Maybe RotateControlOptions
+  --, scaleControlOptions :: Maybe ScaleControlOptions
+  , scrollwheel :: Boolean
+  --, streetView :: Maybe StreetViewPanorama
+  --, streetViewControlOptions :: Maybe StreetViewControlOptions
+  --, styles :: Array MapTypeStyle
+  --, tilt :: Nothing
+  , zoom :: Int
+  --, zoomControlOptions :: Maybe ZoomControlOptions
+  }
 
 defMapOptions_ :: LatLng -> MapOptions
 defMapOptions_ = defMapOptions <<< LatLng.toLiteral

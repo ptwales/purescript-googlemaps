@@ -17,8 +17,7 @@ import GMaps.MVC.MouseEvent (MouseEvent)
 import GMaps.MVC.MouseEvent (getLatLng, stop) as MouseEvent
 import Prelude (Unit, (<<<))
 
-newtype PolyMouseEvent
-  = PolyMouseEvent MouseEvent
+newtype PolyMouseEvent = PolyMouseEvent MouseEvent
 
 derive instance newtypePolyMouseEvent :: Newtype PolyMouseEvent _
 

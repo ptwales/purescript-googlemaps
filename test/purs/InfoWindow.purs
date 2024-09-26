@@ -20,7 +20,8 @@ initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   describe "Test initialization options" do
     it "Change content from default"
-      $ let
+      $
+        let
           set = initWindow (_ { content = _ })
         in
           testIso (Just "hello, world") set G.getContent
@@ -28,7 +29,8 @@ initOptionSpecs = do
     -- no getMaxWidth
     -- no getPixelOffset
     it "Change zIndex from default"
-      $ let
+      $
+        let
           set = initWindow (_ { zIndex = _ })
         in
           testIso (Just 8.0) set G.getZIndex

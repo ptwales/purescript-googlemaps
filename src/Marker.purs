@@ -49,43 +49,43 @@ import GMaps.MVC.MVCObject (class MVCObject, defAddListener)
 import GMaps.Map (Map)
 import Prelude (Unit, map, show, (<$>), (<<<))
 
-type MarkerOptionsR
-  = { position :: LatLngLiteral
-    , map :: Map
-    --, anchorPoint :: Point
-    , animation :: String
-    , clickable :: Boolean
-    , crossOnDrag :: Boolean
-    --, cursor :: String
-    , draggable :: Boolean
-    , icon :: String
-    , label :: Char
-    , opacity :: Number
-    , optimized :: Boolean
-    --, shape :: MarkerShape
-    , title :: String
-    , visible :: Boolean
-    , zIndex :: Number
-    }
+type MarkerOptionsR =
+  { position :: LatLngLiteral
+  , map :: Map
+  --, anchorPoint :: Point
+  , animation :: String
+  , clickable :: Boolean
+  , crossOnDrag :: Boolean
+  --, cursor :: String
+  , draggable :: Boolean
+  , icon :: String
+  , label :: Char
+  , opacity :: Number
+  , optimized :: Boolean
+  --, shape :: MarkerShape
+  , title :: String
+  , visible :: Boolean
+  , zIndex :: Number
+  }
 
-type MarkerOptions
-  = { position :: LatLngLiteral
-    , map :: Maybe Map
-    --, anchorPoint :: Maybe Point
-    , animation :: Maybe Animation
-    , clickable :: Boolean
-    , crossOnDrag :: Boolean
-    --, cursor :: Maybe Cursor
-    , draggable :: Boolean
-    , icon :: Maybe String
-    , label :: Maybe Char
-    , opacity :: Number
-    , optimized :: Boolean
-    --, shape :: Maybe MarkerShape
-    , title :: Maybe String
-    , visible :: Boolean
-    , zIndex :: Maybe Number
-    }
+type MarkerOptions =
+  { position :: LatLngLiteral
+  , map :: Maybe Map
+  --, anchorPoint :: Maybe Point
+  , animation :: Maybe Animation
+  , clickable :: Boolean
+  , crossOnDrag :: Boolean
+  --, cursor :: Maybe Cursor
+  , draggable :: Boolean
+  , icon :: Maybe String
+  , label :: Maybe Char
+  , opacity :: Number
+  , optimized :: Boolean
+  --, shape :: Maybe MarkerShape
+  , title :: Maybe String
+  , visible :: Boolean
+  , zIndex :: Maybe Number
+  }
 
 defMarkerOptions_ :: LatLng -> MarkerOptions
 defMarkerOptions_ = defMarkerOptions <<< LatLng.toLiteral

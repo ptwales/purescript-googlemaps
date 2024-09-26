@@ -7,8 +7,7 @@ import GMaps.MVC.MouseEvent (MVCMouseEvent, mouseEventName)
 import GMaps.MVC.MVCEvent (class MVCEvent)
 import Prelude ((<<<))
 
-newtype PolylineEvent
-  = PolylineEvent MVCMouseEvent
+newtype PolylineEvent = PolylineEvent MVCMouseEvent
 
 derive instance newTypePolylineEvent :: Newtype PolylineEvent _
 

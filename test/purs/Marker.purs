@@ -58,7 +58,8 @@ setterSpecs = do
     it "Can clear a marker's label"
       $ testIso (Nothing) setLabel G.getLabel
     it "Can set a marker's opacity"
-      $ let
+      $
+        let
           set = setMarker G.setOpacity
         in
           testIso 0.5 set G.getOpacity
@@ -76,7 +77,8 @@ setterSpecs = do
     it "Can set a marker as invisible"
       $ testIso false setVisible G.getVisible
     it "Can set a marker's z index"
-      $ let
+      $
+        let
           set = setMarker G.setZIndex
         in
           testIso 3.0 set G.getZIndex
@@ -85,52 +87,61 @@ initOptionsSpecs :: Spec' Unit
 initOptionsSpecs = do
   describe "Test initialization options" do
     it "Change animation from default"
-      $ let
+      $
+        let
           set = initMarker (_ { animation = _ })
         in
           testIso (Just G.Bounce) set G.getAnimation
     -- no get/set Anchor in the api.
     it "Change clickable from default"
-      $ let
+      $
+        let
           set = initMarker (_ { clickable = _ })
         in
           testIso false set G.getClickable
     -- no get/set CrossOnDrag in the api.
     -- TODO: Cursor
     it "Change draggable from default"
-      $ let
+      $
+        let
           set = initMarker (_ { draggable = _ })
         in
           testIso false set G.getDraggable
     it "Change icon from default"
-      $ let
+      $
+        let
           set = initMarker (_ { icon = _ })
         in
           testIso (Just "icon.png") set G.getIcon
     it "Change label from default"
-      $ let
+      $
+        let
           set = initMarker (_ { label = _ })
         in
           testIso (Just 'X') set G.getLabel
     it "Change opacity from default"
-      $ let
+      $
+        let
           set = initMarker (_ { opacity = _ })
         in
           testIso 0.5 set G.getOpacity
     -- no get/set optimized in the api.
     -- TODO: Shape
     it "Change title from default"
-      $ let
+      $
+        let
           set = initMarker (_ { title = _ })
         in
           testIso (Just "hello, world") set (Just <<< G.getTitle)
     it "Change visible from default"
-      $ let
+      $
+        let
           set = initMarker (_ { visible = _ })
         in
           testIso false set G.getVisible
     it "Change Z-Index from default"
-      $ let
+      $
+        let
           set = initMarker (_ { zIndex = _ })
         in
           testIso (Just 2.0) set (Just <<< G.getZIndex)

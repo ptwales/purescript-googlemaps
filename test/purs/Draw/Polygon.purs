@@ -25,7 +25,8 @@ specs = do
 setterSpecs :: Spec' Unit
 setterSpecs = do
   it "Can set mutiple paths at a time"
-    $ let
+    $
+      let
         set = setPolygon P.setPaths
 
         get = map (map LatLng.toLiteral) <<< P.getPaths
@@ -48,7 +49,8 @@ setterSpecs = do
 initOptionSpecs :: Spec' Unit
 initOptionSpecs = do
   it "Change path from default"
-    $ let
+    $
+      let
         set = initPolygon (_ { paths = _ })
 
         get = map (map LatLng.toLiteral) <<< P.getPaths
@@ -62,7 +64,8 @@ polySetterSpecs = do
   it "Can set as editable"
     $ testIso true (setPolygon D.setEditable) D.getEditable
   it "Can set path"
-    $ let
+    $
+      let
         get = map LatLng.toLiteral <<< D.getPath
       in
         testIso Def.altPath (setPolygon D.setPath) get
@@ -72,17 +75,20 @@ polySetterSpecs = do
 polyOptionsSpecs :: Spec' Unit
 polyOptionsSpecs = do
   it "Change draggable from default"
-    $ let
+    $
+      let
         set = initPolygon (_ { draggable = _ })
       in
         testIso true set D.getDraggable
   it "Change editable from default"
-    $ let
+    $
+      let
         set = initPolygon (_ { editable = _ })
       in
         testIso true set D.getEditable
   it "Change visible from default"
-    $ let
+    $
+      let
         set = initPolygon (_ { visible = _ })
       in
         testIso true set D.getVisible

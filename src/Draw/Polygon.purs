@@ -29,37 +29,37 @@ import GMaps.Map (Map)
 import Prelude (Unit, flip, map, (<<<))
 
 -- TODO: inherit options from Poly
-type PolygonOptionsR
-  = { clickable :: Boolean
-    , draggable :: Boolean
-    , editable :: Boolean
-    , fillColor :: String -- custom
-    , fillOpacity :: Number -- custom
-    , geodesic :: Boolean
-    , map :: Map -- inherit from display
-    , paths :: Array (Array LatLngLiteral) -- custom
-    , strokeColor :: String
-    , strokeOpacity :: Number
-    , strokeWeight :: Number
-    , visible :: Boolean
-    , zIndex :: Number
-    }
+type PolygonOptionsR =
+  { clickable :: Boolean
+  , draggable :: Boolean
+  , editable :: Boolean
+  , fillColor :: String -- custom
+  , fillOpacity :: Number -- custom
+  , geodesic :: Boolean
+  , map :: Map -- inherit from display
+  , paths :: Array (Array LatLngLiteral) -- custom
+  , strokeColor :: String
+  , strokeOpacity :: Number
+  , strokeWeight :: Number
+  , visible :: Boolean
+  , zIndex :: Number
+  }
 
-type PolygonOptions
-  = { clickable :: Boolean
-    , draggable :: Boolean
-    , editable :: Boolean
-    , geodesic :: Boolean
-    , fillColor :: Maybe String
-    , fillOpacity :: Maybe Number
-    , map :: Maybe Map
-    , paths :: Array (Array LatLngLiteral)
-    , strokeColor :: Maybe String
-    , strokeOpacity :: Maybe Number
-    , strokeWeight :: Maybe Number
-    , visible :: Boolean
-    , zIndex :: Maybe Number
-    }
+type PolygonOptions =
+  { clickable :: Boolean
+  , draggable :: Boolean
+  , editable :: Boolean
+  , geodesic :: Boolean
+  , fillColor :: Maybe String
+  , fillOpacity :: Maybe Number
+  , map :: Maybe Map
+  , paths :: Array (Array LatLngLiteral)
+  , strokeColor :: Maybe String
+  , strokeOpacity :: Maybe Number
+  , strokeWeight :: Maybe Number
+  , visible :: Boolean
+  , zIndex :: Maybe Number
+  }
 
 defPolygonOptions_ :: Array (Array LatLng) -> PolygonOptions
 defPolygonOptions_ = defPolygonOptions <<< map (map LatLng.toLiteral)

@@ -28,23 +28,23 @@ import GMaps.MVC.MVCObject (class MVCObject, defAddListener)
 import GMaps.Map (Map)
 import Prelude (Unit, (<<<))
 
-type InfoWindowOptionsR
-  = { position :: LatLngLiteral
-    , content :: String
-    , disableAutoPan :: Boolean
-    , maxWidth :: Number
-    , pixelOffset :: Int
-    , zIndex :: Number
-    }
+type InfoWindowOptionsR =
+  { position :: LatLngLiteral
+  , content :: String
+  , disableAutoPan :: Boolean
+  , maxWidth :: Number
+  , pixelOffset :: Int
+  , zIndex :: Number
+  }
 
-type InfoWindowOptions
-  = { position :: LatLngLiteral
-    , content :: Maybe String
-    , disableAutoPan :: Boolean
-    , maxWidth :: Maybe Number
-    , pixelOffset :: Int
-    , zIndex :: Maybe Number
-    }
+type InfoWindowOptions =
+  { position :: LatLngLiteral
+  , content :: Maybe String
+  , disableAutoPan :: Boolean
+  , maxWidth :: Maybe Number
+  , pixelOffset :: Int
+  , zIndex :: Maybe Number
+  }
 
 defInfoWindowOptions_ :: LatLng -> InfoWindowOptions
 defInfoWindowOptions_ = defInfoWindowOptions <<< LatLng.toLiteral

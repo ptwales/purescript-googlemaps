@@ -13,10 +13,10 @@ import Data.Function.Uncurried (Fn1, Fn2, runFn1, runFn2)
 import Data.Show (class Show)
 import Effect (Effect)
 
-type LatLngLiteral
-  = { lat :: Number
-    , lng :: Number
-    }
+type LatLngLiteral =
+  { lat :: Number
+  , lng :: Number
+  }
 
 foreign import data LatLng :: Type
 

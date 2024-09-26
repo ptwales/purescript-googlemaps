@@ -33,11 +33,9 @@ testIso a set get = do
   b <- liftEffect (set a)
   (get b) `shouldEqual` a
 
-type SetOpt o a
-  = o -> a -> o
+type SetOpt o a = o -> a -> o
 
-type Setter a b
-  = a -> b -> Effect a
+type Setter a b = a -> b -> Effect a
 
 setMarker :: forall a. Eq a => Show a => Setter Marker a -> a -> Effect Marker
 setMarker set a = (flip set a) =<< Def.marker
