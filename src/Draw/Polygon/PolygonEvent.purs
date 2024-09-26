@@ -11,5 +11,5 @@ newtype PolygonEvent = PolygonEvent MVCMouseEvent
 
 derive instance newTypePolygonEvent :: Newtype PolygonEvent _
 
-instance mvcPolygonEvent :: MVCEvent PolygonEvent
-  where eventName = mouseEventName <<< unwrap
+instance mvcPolygonEvent :: MVCEvent PolygonEvent where
+  eventName = mouseEventName <<< unwrap

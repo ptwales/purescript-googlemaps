@@ -11,6 +11,5 @@ newtype MarkerEvent = MarkerEvent MVCMouseEvent
 
 derive instance newtypeMarkerEvent :: Newtype MarkerEvent _
 
-instance mvcMarkerEvent :: MVCEvent MarkerEvent
-  where eventName = mouseEventName <<< unwrap
-
+instance mvcMarkerEvent :: MVCEvent MarkerEvent where
+  eventName = mouseEventName <<< unwrap

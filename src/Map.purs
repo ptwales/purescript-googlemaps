@@ -146,31 +146,32 @@ defMapOptions center =
   }
 
 runMapOptions :: MapOptions -> MapOptionsR
-runMapOptions options = options
-  { backgroundColor = orUndefined options.backgroundColor
-  , controlSize = orUndefined options.controlSize
-  , draggableCursor = orUndefined options.draggableCursor
-  --, fullscreenControl = orUndefined options.fullScreenControlOptions
-  --, fullscreenControlOptions = orUndefined options.fullScreenControlOptions
-  , gestureHandling = orUndefined (show <$> options.gestureHandling)
-  --, mapTypeControl = isJust options.mapTypeControlOptions
-  --, mapTypeControlOptions = orUndefined options.mapTypeControlOptions
-  , mapTypeId = orUndefined (show <$> options.mapTypeId)
-  , maxZoom = orUndefined options.maxZoom
-  , minZoom = orUndefined options.minZoom
-  --, restriction = orUndefined options.restriction
-  --, rotateControl = isJust options.rotateControlOptions
-  --, rotateControlOptions = orUndefined options.rotateControlOptions
-  --, scaleControl = isJust options.scaleControlOptions
-  --, scaleControlOptions = orUndefined options.scaleControlOptions
-  --, streetView = orUndefined options.streetView
-  --, streetViewControl = isJust options.streetViewControlOptions
-  --, streetViewControlOptions = orUndefined options.streetViewControlOptions
-  --, styles = runMapTypeStyle <$> otpions.styles
-  --, tilt = orUndefined options.tilt
-  --, zoomControl = isJust options.zoomControlOptions
-  --, zoomControlOptions = orUndefined options.zoomControlOptions
-  }
+runMapOptions options =
+  options
+    { backgroundColor = orUndefined options.backgroundColor
+    , controlSize = orUndefined options.controlSize
+    , draggableCursor = orUndefined options.draggableCursor
+    --, fullscreenControl = orUndefined options.fullScreenControlOptions
+    --, fullscreenControlOptions = orUndefined options.fullScreenControlOptions
+    , gestureHandling = orUndefined (show <$> options.gestureHandling)
+    --, mapTypeControl = isJust options.mapTypeControlOptions
+    --, mapTypeControlOptions = orUndefined options.mapTypeControlOptions
+    , mapTypeId = orUndefined (show <$> options.mapTypeId)
+    , maxZoom = orUndefined options.maxZoom
+    , minZoom = orUndefined options.minZoom
+    --, restriction = orUndefined options.restriction
+    --, rotateControl = isJust options.rotateControlOptions
+    --, rotateControlOptions = orUndefined options.rotateControlOptions
+    --, scaleControl = isJust options.scaleControlOptions
+    --, scaleControlOptions = orUndefined options.scaleControlOptions
+    --, streetView = orUndefined options.streetView
+    --, streetViewControl = isJust options.streetViewControlOptions
+    --, streetViewControlOptions = orUndefined options.streetViewControlOptions
+    --, styles = runMapTypeStyle <$> otpions.styles
+    --, tilt = orUndefined options.tilt
+    --, zoomControl = isJust options.zoomControlOptions
+    --, zoomControlOptions = orUndefined options.zoomControlOptions
+    }
 
 foreign import data Map :: Type
 
@@ -182,11 +183,9 @@ gMap element = runFn2 gMapImpl element <<< runMapOptions
 -- foreign import fitBoundsImpl :: Fn2 Map LatLngBounds (Effect Map)
 -- fitBounds :: Map -> LatLngBounds -> Effect Map
 -- fitBounds = runFn2 fitBoundsImpl
-
 -- foreign import getBoundsImpl :: Fn1 Map LatLngBounds
 -- getBounds :: Map -> LatLngBounds
 -- getBounds = runFn1 getBoundsImpl
-
 foreign import getCenterImpl :: Fn1 Map LatLng
 
 getCenter :: Map -> LatLng
@@ -215,11 +214,9 @@ getMapTypeId = read <<< runFn1 getMapTypeIdImpl
 --foreign import getProjectionImpl :: Fn1 Map Projection
 --getProjection :: Map -> Projection
 --getProjection = runFn1 getProjectionImpl
-
 --foreign import getStreetViewImpl :: Fn1 Map StreetViewPanorama
 --getStreetView :: Map -> StreetView
 --getStreetView = runFn1 getStreetViewImpl
-
 foreign import getTiltImpl :: Fn1 Map String
 
 getTilt :: Map -> String
@@ -243,7 +240,6 @@ panTo = runFn2 panToImpl
 --foreign import panToBoundsImpl :: Fn2 Map LatLngBounds (Effect Map)
 --panToBounds :: Map -> LatLngBounds -> Effect Map
 --panToBounds = runFn2 panToBoundsImpl
-
 foreign import setCenterImpl :: Fn2 Map LatLngLiteral (Effect Map)
 
 setCenter :: Map -> LatLngLiteral -> Effect Map
@@ -272,7 +268,6 @@ setOptions map = runFn2 setOptionsImpl map <<< runMapOptions
 --foreign import setStreetViewImpl :: Fn2 Map StreeViewPanorama (Effect Map)
 --setStreetView :: Map -> StreeViewPanorama -> Effect Map
 --setStreetView = runFn2 setStreetViewImpl
-
 foreign import setTiltImpl :: Fn2 Map Number (Effect Map)
 
 setTilt :: Map -> Number -> Effect Map

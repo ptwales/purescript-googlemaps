@@ -1,0 +1,22 @@
+package:
+  dependencies:
+    - debug
+    - foreign
+    - functions
+    - psci-support
+    - read
+    - spec-mocha
+    - web-html
+  name: googlemaps
+workspace:
+  extraPackages:
+    spec-mocha:
+      dependencies:
+        - console
+        - exceptions
+        - foldable-traversable
+        - spec
+      git: https://github.com/owickstrom/purescript-spec-mocha.git
+      ref: v5.1.0
+  packageSet:
+    registry: 59.0.0

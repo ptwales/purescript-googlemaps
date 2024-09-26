@@ -1,66 +1,66 @@
 "use strict";
 
-exports.newInfoWindowImpl = function(opts) {
+export const newInfoWindowImpl = function(opts) {
   return function() {
     return new google.maps.InfoWindow(opts);
   }
 }
 
-exports.openInfoWindowImpl = function(iw, map, marker) {
+export const openInfoWindowImpl = function(iw, map, marker) {
   return function() {
     iw.open(map, marker);
     return iw;
   }
 }
 
-exports.closeInfoWindowImpl = function(infoWindow) {
+export const closeInfoWindowImpl = function(infoWindow) {
   return function() {
     infoWindow.close();
     return infoWindow;
   }
 }
 
-exports.deleteInfoWindowImpl = function(infoWindow) {
+export const deleteInfoWindowImpl = function(infoWindow) {
   return function() {
     infoWindow = null;
     return;
   }
 }
 
-exports.getContentImpl = function(infoWindow) {
+export const getContentImpl = function(infoWindow) {
   return infoWindow.getContent();
 }
 
-exports.getPositionImpl = function(infoWindow) {
+export const getPositionImpl = function(infoWindow) {
   return infoWindow.getPosition();
 }
 
-exports.getZIndexImpl = function(infoWindow) {
+export const getZIndexImpl = function(infoWindow) {
   return infoWindow.getZIndex();
 }
 
-exports.setContentImpl = function(infoWindow, content) {
+export const setContentImpl = function(infoWindow, content) {
   return function() {
     infoWindow.setContent(content);
     return infoWindow;
   }
 }
 
-exports.setOptionsImpl = function(infoWindow, options) {
+export const setOptionsImpl = function(infoWindow, options) {
   return function() {
     infoWindow.setOptions(options);
     return infoWindow;
   }
 }
 
-exports.setPositionImpl = function(infoWindow, latLng) {
+export const setPositionImpl = function(infoWindow, latLng) {
   return function() {
     infoWindow.setPosition(latLng);
     return infoWindow;
   }
 }
 
-exports.setZIndexImpl = function(infoWindow, zIndex) {
+export const setZIndexImpl = function(infoWindow, zIndex) {
   return function() {
     infoWindow.setZIndex(zIndex);
     return infoWindow;

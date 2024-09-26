@@ -72,18 +72,19 @@ defPolylineOptions path =
   }
 
 runPolylineOptions :: PolylineOptions -> PolylineOptionsR
-runPolylineOptions options = options
-  { map = orUndefined options.map
-  , strokeColor = orUndefined options.strokeColor
-  , strokeOpacity = orUndefined options.strokeOpacity
-  , strokeWeight = orUndefined options.strokeWeight
-  , zIndex = orUndefined options.zIndex
-  }
+runPolylineOptions options =
+  options
+    { map = orUndefined options.map
+    , strokeColor = orUndefined options.strokeColor
+    , strokeOpacity = orUndefined options.strokeOpacity
+    , strokeWeight = orUndefined options.strokeWeight
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data Polyline :: Type
 
-instance mvcPolylineObject :: MVCObject Polyline PolylineEvent
-  where addListener = defAddListener
+instance mvcPolylineObject :: MVCObject Polyline PolylineEvent where
+  addListener = defAddListener
 
 foreign import newPolylineImpl :: Fn1 PolylineOptionsR (Effect Polyline)
 

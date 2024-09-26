@@ -3,7 +3,6 @@ module Test.Types
   ) where
 
 import Prelude
-
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Test.Spec (SpecT)

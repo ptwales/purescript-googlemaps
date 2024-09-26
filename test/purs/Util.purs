@@ -13,7 +13,6 @@ module Test.Util
   ) where
 
 import Prelude
-
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Effect.Class (liftEffect)

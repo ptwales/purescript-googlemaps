@@ -1,129 +1,127 @@
-"use strict";
-
-exports.gMapImpl = function(ele, opts) {
+export const gMapImpl = function(ele, opts) {
   return function() {
     return new google.maps.Map(ele, opts);
   }
 }
 
-//exports.fitBounds = function(map, latLngBounds) {
+//export const fitBounds = function(map, latLngBounds) {
 //  return function() {
 //    map.fitBounds(latLngBounds);
 //    return map;
 //  }
 //}
 
-//exports.getBounds = function(map) {
+//export const getBounds = function(map) {
 //  return map.getBounds();
 //}
 
-exports.getCenterImpl = function(map) {
+export const getCenterImpl = function(map) {
   return map.getCenter();
 }
 
-exports.getClickableIconsImpl = function(map) {
+export const getClickableIconsImpl = function(map) {
   return map.getClickableIcons();
 }
 
-exports.getDivImpl = function(map) {
+export const getDivImpl = function(map) {
   return map.getDiv();
 }
 
-exports.getHeadingImpl = function(map) {
+export const getHeadingImpl = function(map) {
   return map.getHeading();
 }
 
-exports.getMapTypeIdImpl = function(map) {
+export const getMapTypeIdImpl = function(map) {
   return map.getMapTypeId();
 }
 
-//exports.getProjectionImpl = function(map) {
+//export const getProjectionImpl = function(map) {
 //  return map.getProjection();
 //}
 
-//exports.getStreetViewImpl = function(map) {
+//export const getStreetViewImpl = function(map) {
 //  return map.getStreetView();
 //}
 
-exports.getTiltImpl = function(map) {
+export const getTiltImpl = function(map) {
   return map.getTilt();
 }
 
-exports.getZoomImpl = function(map) {
+export const getZoomImpl = function(map) {
   return map.getZoom();
 }
 
-exports.panByImpl = function(map, x, y) {
+export const panByImpl = function(map, x, y) {
   return function() {
     map.panBy(x, y);
     return map;
   }
 }
 
-exports.panToImpl = function(map, x) {
+export const panToImpl = function(map, x) {
   return function() {
     map.panTo(x);
     return map;
   }
 }
 
-//exports.panToBounds = function(map, latLngBounds) {
+//export const panToBounds = function(map, latLngBounds) {
 //  return function() {
 //    map.panToBounds(latLngBounds);
 //    return map;
 //  }
 //}
 
-exports.setCenterImpl = function(map, latLng) {
+export const setCenterImpl = function(map, latLng) {
   return function() {
     map.setCenter(latLng);
     return map;
   }
 }
 
-exports.setClickableIconsImpl = function(map, clickable) {
+export const setClickableIconsImpl = function(map, clickable) {
   return function() {
     map.setClickableIcons(clickable);
     return map;
   }
 }
 
-exports.setHeadingImpl = function(map, heading) {
+export const setHeadingImpl = function(map, heading) {
   return function() {
     map.setHeading(heading);
     return map;
   }
 }
 
-exports.setMapTypeIdImpl = function(map, mapTypeId) {
+export const setMapTypeIdImpl = function(map, mapTypeId) {
   return function() {
     map.setMapTypeId(mapTypeId);
     return map;
   }
 }
 
-exports.setOptionsImpl = function(map, options) {
+export const setOptionsImpl = function(map, options) {
   return function() {
     map.setOptions(options);
     return map;
   }
 }
 
-//exports.setStreetViewImpl = function(map, streetView) {
+//export const setStreetViewImpl = function(map, streetView) {
 //  return function() {
 //    map.setStreetView(streetView);
 //    return map;
 //  }
 //}
 
-exports.setTiltImpl = function(map, tilt) {
+export const setTiltImpl = function(map, tilt) {
   return function() {
     map.setTilt(tilt);
     return map;
   }
 }
 
-exports.setZoomImpl = function(map, zoom) {
+export const setZoomImpl = function(map, zoom) {
   return function() {
     map.setZoom(zoom);
     return map;

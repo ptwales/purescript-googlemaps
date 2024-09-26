@@ -11,5 +11,5 @@ newtype PolylineEvent = PolylineEvent MVCMouseEvent
 
 derive instance newTypePolylineEvent :: Newtype PolylineEvent _
 
-instance mvcPolylineEvent :: MVCEvent PolylineEvent
-  where eventName = mouseEventName <<< unwrap
+instance mvcPolylineEvent :: MVCEvent PolylineEvent where
+  eventName = mouseEventName <<< unwrap

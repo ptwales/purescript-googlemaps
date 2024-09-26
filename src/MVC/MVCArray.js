@@ -1,24 +1,24 @@
 "use strict";
 
-exports.newMVCArrayImpl = function() {
+export const newMVCArrayImpl = function() {
   return function() {
     return new google.maps.MVCArray();
   }
 }
 
-exports.pushMVCArrayImpl = function(arr, ele) {
+export const pushMVCArrayImpl = function(arr, ele) {
   return function() {
     arr.push(ele);
     return;
   }
 }
 
-exports.popMVCArrayImpl = function(arr) {
+export const popMVCArrayImpl = function(arr) {
   return function() {
     return arr.pop();
   }
 }
 
-exports.toArrayImpl = function(arr) {
+export const toArrayImpl = function(arr) {
   return arr.getArray();
 }

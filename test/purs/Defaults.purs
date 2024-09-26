@@ -1,7 +1,6 @@
 module Test.Defaults where
 
 import Prelude (bind, flip, negate, (<$>), (=<<))
-
 import Data.Traversable (traverse)
 import Data.Maybe (Maybe)
 import Effect (Effect)
@@ -17,7 +16,6 @@ import Web.DOM.NonElementParentNode (getElementById) as HTML
 import Web.HTML.Window (document) as HTML
 
 -- TODO: Quickcheck Arbitrary or Gen latLng?
-
 lat :: Number
 lat = 38.8976763
 
@@ -46,7 +44,8 @@ googleMap :: Effect (Maybe Map)
 googleMap = do
   window <- HTML.window
   document <- HTML.document window
-  let node = HTML.toNonElementParentNode document
+  let
+    node = HTML.toNonElementParentNode document
   element <- HTML.getElementById "gmap" node
   options <- defMapOptions_ <$> latLng
   traverse (flip gMap options) element

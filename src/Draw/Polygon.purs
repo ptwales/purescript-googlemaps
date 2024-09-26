@@ -82,20 +82,21 @@ defPolygonOptions paths =
   }
 
 runPolygonOptions :: PolygonOptions -> PolygonOptionsR
-runPolygonOptions options = options
-  { map = orUndefined options.map
-  , fillColor = orUndefined options.fillColor
-  , fillOpacity = orUndefined options.fillOpacity
-  , strokeColor = orUndefined options.strokeColor
-  , strokeOpacity = orUndefined options.strokeOpacity
-  , strokeWeight = orUndefined options.strokeWeight
-  , zIndex = orUndefined options.zIndex
-  }
+runPolygonOptions options =
+  options
+    { map = orUndefined options.map
+    , fillColor = orUndefined options.fillColor
+    , fillOpacity = orUndefined options.fillOpacity
+    , strokeColor = orUndefined options.strokeColor
+    , strokeOpacity = orUndefined options.strokeOpacity
+    , strokeWeight = orUndefined options.strokeWeight
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data Polygon :: Type
 
-instance mvcPolygonObject :: MVCObject Polygon PolygonEvent
-  where addListener = defAddListener
+instance mvcPolygonObject :: MVCObject Polygon PolygonEvent where
+  addListener = defAddListener
 
 foreign import newPolygonImpl :: Fn1 PolygonOptionsR (Effect Polygon)
 

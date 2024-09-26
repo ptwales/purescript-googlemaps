@@ -3,11 +3,10 @@ module Test.LatLng
   ) where
 
 import Prelude
-
+import Data.Number (round)
 import Effect.Aff (Aff)
 import Effect.Class (liftEffect)
 import GMaps.LatLng as G
-import Math (round)
 import Test.Defaults as Def
 import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
@@ -15,10 +14,14 @@ import Test.Types (Spec')
 
 shouldAlmostEqual :: Number -> Number -> Aff Unit
 shouldAlmostEqual x y =
-  let r = 10000000.0
-      rx = round (x * r) / r
-      ry = round (y * r) / r
-   in rx `shouldEqual` ry
+  let
+    r = 10000000.0
+
+    rx = round (x * r) / r
+
+    ry = round (y * r) / r
+  in
+    rx `shouldEqual` ry
 
 specs :: Spec' Unit
 specs = do
@@ -39,7 +42,7 @@ specs = do
       frmLit `shouldEqual` latLng
     it "Can translate to a literal" do
       latLng <- liftEffect Def.latLng
-      let lit = G.toLiteral latLng
+      let
+        lit = G.toLiteral latLng
       lit.lat `shouldAlmostEqual` Def.lat
       lit.lng `shouldAlmostEqual` Def.lng
-

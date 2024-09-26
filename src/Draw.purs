@@ -35,7 +35,6 @@ class Draw a where
   setVisible :: a -> Boolean -> Effect a
 
 -- NOTE: eta expansion of these methods are require for compilation
-
 instance drawPolygon :: Draw Polygon where
   getDraggable d = _getDraggable d
   getEditable d = _getEditable d
@@ -67,7 +66,7 @@ _getDraggable = runFn1 getDraggableImpl
 
 foreign import getEditableImpl :: forall a. Fn1 a Boolean
 
-_getEditable :: forall a. Draw a =>  a -> Boolean
+_getEditable :: forall a. Draw a => a -> Boolean
 _getEditable = runFn1 getEditableImpl
 
 foreign import getPathImpl :: forall a. Fn1 a (MVCArray LatLng)

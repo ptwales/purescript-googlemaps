@@ -16,34 +16,26 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-
-      - name: cache yarn dependencies
+      - name: cache npm dependencies
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-yarn-${{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
           path: node_modules
-
       - name: install
-        run: yarn install
-
+        run: npm install
       - name: cache purescript dependencies
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-spago-${{ hashFiles('**/*.dhall') }}
+          key: ${{ runner.os }}-spago-${{ hashFiles('**/*.yaml') }}
           path: |
             .spago
             output
-
       - name: bundle test code
-        run: yarn spago bundle-app -m Test.Main -t dist/bundle.js
-
-      - name: build test page
-        run: yarn pug test/pug -o dist
+        run: npm run test:build
         env:
           MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
-
       - name: mocha tests
-        run: yarn mocha-headless-chrome -a no-sandbox -f dist/index.html
+        run: npm run test:run
 
   # Automatically merge dependabot PRs if the tests pass and its not a major
   # version change.

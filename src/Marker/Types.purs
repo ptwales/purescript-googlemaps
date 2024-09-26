@@ -13,12 +13,12 @@ data Animation
 
 derive instance eqAnimation :: Eq Animation
 
-instance showAnimation :: Show Animation
-  where show Bounce = "BOUNCE"
-        show Drop = "DROP"
+instance showAnimation :: Show Animation where
+  show Bounce = "BOUNCE"
+  show Drop = "DROP"
 
-instance readAnimation :: Read Animation
-  where read text
-          | text == show Bounce = Just Bounce
-          | text == show Drop = Just Drop
-          | otherwise = Nothing
+instance readAnimation :: Read Animation where
+  read text
+    | text == show Bounce = Just Bounce
+    | text == show Drop = Just Drop
+    | otherwise = Nothing
