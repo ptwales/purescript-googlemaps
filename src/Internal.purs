@@ -4,10 +4,10 @@ import Prelude ((<=<))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Foreign (isNull, isUndefined, unsafeToForeign)
 
-foreign import undefined :: forall a. a
+foreign import _undefined :: forall a. a
 
 orUndefined :: forall a. Maybe a -> a
-orUndefined = fromMaybe undefined
+orUndefined = fromMaybe _undefined
 
 maybeUndefined :: forall a. a -> Maybe a
 maybeUndefined a = if isUndefined (unsafeToForeign a) then Nothing else Just a

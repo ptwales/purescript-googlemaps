@@ -1,5 +1,5 @@
 module GMaps.MVC.PolyMouseEvent
-  ( PolyMouseEvent
+  ( PolyMouseEvent(..)
   , getEdge
   , getLatLng
   , getPath

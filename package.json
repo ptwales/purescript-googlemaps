@@ -1,18 +1,19 @@
 {
   "scripts": {
-    "postinstall": "spago install",
     "build": "spago build",
     "watch": "spago build --watch",
     "test:build": "dotenv pug test/pug -- -o dist && spago bundle-app -m Test.Main -t dist/bundle.js",
     "test:run": "mocha-headless-chrome -a no-sandbox -f dist/index.html"
   },
   "devDependencies": {
-    "dotenv-cli": "^4.0.0",
-    "mocha": "^8.1.3",
-    "mocha-headless-chrome": "^3.1.0",
+    "dotenv-cli": "^7.4.2",
+    "mocha": "^8.4.0",
+    "mocha-headless-chrome": "^4.0.0",
     "pug-cli": "^1.0.0-alpha6",
-    "purescript": "^0.13.8",
-    "purescript-language-server": "^0.14.0",
-    "spago": "^0.16.0"
+    "purescript": "^0.15.15",
+    "purescript-language-server": "^0.18.0"
+  },
+  "dependencies": {
+    "spago": "^0.93.39"
   }
 }

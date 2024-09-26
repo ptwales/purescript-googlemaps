@@ -4,10 +4,10 @@ module Test.LatLng
 
 import Prelude
 
+import Data.Number (round)
 import Effect.Aff (Aff)
 import Effect.Class (liftEffect)
 import GMaps.LatLng as G
-import Math (round)
 import Test.Defaults as Def
 import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
