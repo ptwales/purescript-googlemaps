@@ -49,43 +49,43 @@ import GMaps.MVC.MVCObject (class MVCObject, defAddListener)
 import GMaps.Map (Map)
 import Prelude (Unit, map, show, (<$>), (<<<))
 
-type MarkerOptionsR =
-  { position :: LatLngLiteral
-  , map :: Map
-  --, anchorPoint :: Point
-  , animation :: String
-  , clickable :: Boolean
-  , crossOnDrag :: Boolean
-  --, cursor :: String
-  , draggable :: Boolean
-  , icon :: String
-  , label :: Char
-  , opacity :: Number
-  , optimized :: Boolean
-  --, shape :: MarkerShape
-  , title :: String
-  , visible :: Boolean
-  , zIndex :: Number
-  }
+type MarkerOptionsR
+  = { position :: LatLngLiteral
+    , map :: Map
+    --, anchorPoint :: Point
+    , animation :: String
+    , clickable :: Boolean
+    , crossOnDrag :: Boolean
+    --, cursor :: String
+    , draggable :: Boolean
+    , icon :: String
+    , label :: Char
+    , opacity :: Number
+    , optimized :: Boolean
+    --, shape :: MarkerShape
+    , title :: String
+    , visible :: Boolean
+    , zIndex :: Number
+    }
 
-type MarkerOptions =
-  { position :: LatLngLiteral
-  , map :: Maybe Map
-  --, anchorPoint :: Maybe Point
-  , animation :: Maybe Animation
-  , clickable :: Boolean
-  , crossOnDrag :: Boolean
-  --, cursor :: Maybe Cursor
-  , draggable :: Boolean
-  , icon :: Maybe String
-  , label :: Maybe Char
-  , opacity :: Number
-  , optimized :: Boolean
-  --, shape :: Maybe MarkerShape
-  , title :: Maybe String
-  , visible :: Boolean
-  , zIndex :: Maybe Number
-  }
+type MarkerOptions
+  = { position :: LatLngLiteral
+    , map :: Maybe Map
+    --, anchorPoint :: Maybe Point
+    , animation :: Maybe Animation
+    , clickable :: Boolean
+    , crossOnDrag :: Boolean
+    --, cursor :: Maybe Cursor
+    , draggable :: Boolean
+    , icon :: Maybe String
+    , label :: Maybe Char
+    , opacity :: Number
+    , optimized :: Boolean
+    --, shape :: Maybe MarkerShape
+    , title :: Maybe String
+    , visible :: Boolean
+    , zIndex :: Maybe Number
+    }
 
 defMarkerOptions_ :: LatLng -> MarkerOptions
 defMarkerOptions_ = defMarkerOptions <<< LatLng.toLiteral
@@ -111,22 +111,23 @@ defMarkerOptions position =
   }
 
 runMakerOptions :: MarkerOptions -> MarkerOptionsR
-runMakerOptions options = options
-  { map = orUndefined options.map
-  --, anchorPoint = orUndefined options.anchorPoint
-  , animation = orUndefined (show <$> options.animation)
-  --, cursor = orUndefined options.cursor
-  , icon = orUndefined options.icon
-  , label = orUndefined options.label
-  --, shape = orUndefined options.shape
-  , title = orUndefined options.title
-  , zIndex = orUndefined options.zIndex
-  }
+runMakerOptions options =
+  options
+    { map = orUndefined options.map
+    --, anchorPoint = orUndefined options.anchorPoint
+    , animation = orUndefined (show <$> options.animation)
+    --, cursor = orUndefined options.cursor
+    , icon = orUndefined options.icon
+    , label = orUndefined options.label
+    --, shape = orUndefined options.shape
+    , title = orUndefined options.title
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data Marker :: Type
 
-instance mvcMarkerObject :: MVCObject Marker MarkerEvent
-  where addListener = defAddListener
+instance mvcMarkerObject :: MVCObject Marker MarkerEvent where
+  addListener = defAddListener
 
 foreign import newMarkerImpl :: Fn1 MarkerOptionsR (Effect Marker)
 
@@ -157,7 +158,6 @@ getClickable = runFn1 getClickableImpl
 --
 --getCursor :: Marker ->  Boolean
 --getCursor = runFn1 getCursorImpl
-
 foreign import getDraggableImpl :: Fn1 Marker Boolean
 
 getDraggable :: Marker -> Boolean
@@ -192,7 +192,6 @@ getPosition = runFn1 getPositionImpl
 --
 --getShape :: Marker -> Shape
 --getShape = runFn1 getShapeImpl
-
 foreign import getTitleImpl :: Fn1 Marker String
 
 getTitle :: Marker -> String
@@ -222,7 +221,6 @@ setClickable = runFn2 setClickableImpl
 --
 --setCursor :: Marker -> Cursor -> Effect Marker
 --setCursor marker cursor = runFn2 setCursorImpl marker (?umm cursor)
-
 foreign import setDraggableImpl :: Fn2 Marker Boolean (Effect Marker)
 
 setDraggable :: Marker -> Boolean -> Effect Marker
@@ -263,7 +261,6 @@ setPosition = runFn2 setPositionImpl
 --
 --setShape :: Marker -> Maybe MarkerShape -> Effect Marker
 --setShape marker = runFn2 setShapeImpl <<< orNull
-
 foreign import setTitleImpl :: Fn2 Marker String (Effect Marker)
 
 setTitle :: Marker -> String -> Effect Marker

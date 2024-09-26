@@ -1,7 +1,6 @@
 module Test.Main where
 
 import Prelude
-
 import Effect (Effect)
 import Data.Maybe (Maybe, maybe)
 import GMaps.Map (Map) as G
@@ -32,4 +31,5 @@ main = do
 
 withMap :: Maybe G.Map -> (G.Map -> Spec' Unit) -> Spec' Unit
 withMap googleMap suite = maybe failedToLoadMap suite googleMap
-  where failedToLoadMap = it "CRITICAL" $ fail "FAILED TO LOAD MAP"
+  where
+  failedToLoadMap = it "CRITICAL" $ fail "FAILED TO LOAD MAP"

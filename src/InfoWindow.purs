@@ -28,23 +28,23 @@ import GMaps.MVC.MVCObject (class MVCObject, defAddListener)
 import GMaps.Map (Map)
 import Prelude (Unit, (<<<))
 
-type InfoWindowOptionsR =
-  { position :: LatLngLiteral
-  , content :: String
-  , disableAutoPan :: Boolean
-  , maxWidth :: Number
-  , pixelOffset :: Int
-  , zIndex :: Number
-  }
+type InfoWindowOptionsR
+  = { position :: LatLngLiteral
+    , content :: String
+    , disableAutoPan :: Boolean
+    , maxWidth :: Number
+    , pixelOffset :: Int
+    , zIndex :: Number
+    }
 
-type InfoWindowOptions =
-  { position :: LatLngLiteral
-  , content :: Maybe String
-  , disableAutoPan ::Boolean
-  , maxWidth :: Maybe Number
-  , pixelOffset :: Int
-  , zIndex :: Maybe Number
-  }
+type InfoWindowOptions
+  = { position :: LatLngLiteral
+    , content :: Maybe String
+    , disableAutoPan :: Boolean
+    , maxWidth :: Maybe Number
+    , pixelOffset :: Int
+    , zIndex :: Maybe Number
+    }
 
 defInfoWindowOptions_ :: LatLng -> InfoWindowOptions
 defInfoWindowOptions_ = defInfoWindowOptions <<< LatLng.toLiteral
@@ -60,21 +60,22 @@ defInfoWindowOptions latLng =
   }
 
 runInfoWindowOptions :: InfoWindowOptions -> InfoWindowOptionsR
-runInfoWindowOptions options = options
-  { content = orUndefined options.content
-  , maxWidth = orUndefined options.maxWidth
-  , zIndex = orUndefined options.zIndex
-  }
+runInfoWindowOptions options =
+  options
+    { content = orUndefined options.content
+    , maxWidth = orUndefined options.maxWidth
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data InfoWindow :: Type
 
-instance mvcInfoWindowObject :: MVCObject InfoWindow InfoWindowEvent
-  where addListener = defAddListener
+instance mvcInfoWindowObject :: MVCObject InfoWindow InfoWindowEvent where
+  addListener = defAddListener
 
 foreign import newInfoWindowImpl :: Fn1 InfoWindowOptionsR (Effect InfoWindow)
 
 newInfoWindow :: InfoWindowOptions -> Effect InfoWindow
-newInfoWindow= runFn1 newInfoWindowImpl <<< runInfoWindowOptions
+newInfoWindow = runFn1 newInfoWindowImpl <<< runInfoWindowOptions
 
 foreign import openInfoWindowImpl :: Fn3 InfoWindow Map Marker (Effect InfoWindow)
 

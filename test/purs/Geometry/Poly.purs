@@ -3,7 +3,6 @@ module Test.Geometry.Poly
   ) where
 
 import Prelude
-
 import Effect.Class (liftEffect)
 import GMaps.Geometry.Poly as Poly
 import GMaps.LatLng (LatLngLiteral)

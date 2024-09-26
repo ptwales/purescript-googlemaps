@@ -22,35 +22,35 @@ import GMaps.MVC.MVCObject (class MVCObject, defAddListener)
 import GMaps.Map (Map)
 import Prelude (Unit, flip, map, (<<<))
 
-type PolylineOptionsR =
-  { clickable :: Boolean
-  , draggable :: Boolean
-  , editable :: Boolean
-  , geodesic :: Boolean
-  -- icons :: Array IconSequence
-  , map :: Map
-  , path :: Array LatLngLiteral
-  , strokeColor :: String
-  , strokeOpacity :: Number
-  , strokeWeight :: Number
-  , visible :: Boolean
-  , zIndex :: Number
-  }
+type PolylineOptionsR
+  = { clickable :: Boolean
+    , draggable :: Boolean
+    , editable :: Boolean
+    , geodesic :: Boolean
+    -- icons :: Array IconSequence
+    , map :: Map
+    , path :: Array LatLngLiteral
+    , strokeColor :: String
+    , strokeOpacity :: Number
+    , strokeWeight :: Number
+    , visible :: Boolean
+    , zIndex :: Number
+    }
 
-type PolylineOptions =
-  { clickable :: Boolean
-  , draggable :: Boolean
-  , editable :: Boolean
-  , geodesic :: Boolean
-  -- icons :: Array IconSequence
-  , map :: Maybe Map
-  , path :: Array LatLngLiteral
-  , strokeColor :: Maybe String
-  , strokeOpacity :: Maybe Number
-  , strokeWeight :: Maybe Number
-  , visible :: Boolean
-  , zIndex :: Maybe Number
-  }
+type PolylineOptions
+  = { clickable :: Boolean
+    , draggable :: Boolean
+    , editable :: Boolean
+    , geodesic :: Boolean
+    -- icons :: Array IconSequence
+    , map :: Maybe Map
+    , path :: Array LatLngLiteral
+    , strokeColor :: Maybe String
+    , strokeOpacity :: Maybe Number
+    , strokeWeight :: Maybe Number
+    , visible :: Boolean
+    , zIndex :: Maybe Number
+    }
 
 defPolylineOptions_ :: Array LatLng -> PolylineOptions
 defPolylineOptions_ = defPolylineOptions <<< map LatLng.toLiteral
@@ -72,18 +72,19 @@ defPolylineOptions path =
   }
 
 runPolylineOptions :: PolylineOptions -> PolylineOptionsR
-runPolylineOptions options = options
-  { map = orUndefined options.map
-  , strokeColor = orUndefined options.strokeColor
-  , strokeOpacity = orUndefined options.strokeOpacity
-  , strokeWeight = orUndefined options.strokeWeight
-  , zIndex = orUndefined options.zIndex
-  }
+runPolylineOptions options =
+  options
+    { map = orUndefined options.map
+    , strokeColor = orUndefined options.strokeColor
+    , strokeOpacity = orUndefined options.strokeOpacity
+    , strokeWeight = orUndefined options.strokeWeight
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data Polyline :: Type
 
-instance mvcPolylineObject :: MVCObject Polyline PolylineEvent
-  where addListener = defAddListener
+instance mvcPolylineObject :: MVCObject Polyline PolylineEvent where
+  addListener = defAddListener
 
 foreign import newPolylineImpl :: Fn1 PolylineOptionsR (Effect Polyline)
 

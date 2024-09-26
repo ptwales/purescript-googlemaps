@@ -29,37 +29,37 @@ import GMaps.Map (Map)
 import Prelude (Unit, flip, map, (<<<))
 
 -- TODO: inherit options from Poly
-type PolygonOptionsR =
-  { clickable :: Boolean
-  , draggable :: Boolean
-  , editable :: Boolean
-  , fillColor :: String -- custom
-  , fillOpacity :: Number -- custom
-  , geodesic :: Boolean
-  , map :: Map -- inherit from display
-  , paths :: Array (Array LatLngLiteral) -- custom
-  , strokeColor :: String
-  , strokeOpacity :: Number
-  , strokeWeight :: Number
-  , visible :: Boolean
-  , zIndex :: Number
-  }
+type PolygonOptionsR
+  = { clickable :: Boolean
+    , draggable :: Boolean
+    , editable :: Boolean
+    , fillColor :: String -- custom
+    , fillOpacity :: Number -- custom
+    , geodesic :: Boolean
+    , map :: Map -- inherit from display
+    , paths :: Array (Array LatLngLiteral) -- custom
+    , strokeColor :: String
+    , strokeOpacity :: Number
+    , strokeWeight :: Number
+    , visible :: Boolean
+    , zIndex :: Number
+    }
 
-type PolygonOptions =
-  { clickable :: Boolean
-  , draggable :: Boolean
-  , editable :: Boolean
-  , geodesic :: Boolean
-  , fillColor :: Maybe String
-  , fillOpacity :: Maybe Number
-  , map :: Maybe Map
-  , paths :: Array (Array LatLngLiteral)
-  , strokeColor :: Maybe String
-  , strokeOpacity :: Maybe Number
-  , strokeWeight :: Maybe Number
-  , visible :: Boolean
-  , zIndex :: Maybe Number
-  }
+type PolygonOptions
+  = { clickable :: Boolean
+    , draggable :: Boolean
+    , editable :: Boolean
+    , geodesic :: Boolean
+    , fillColor :: Maybe String
+    , fillOpacity :: Maybe Number
+    , map :: Maybe Map
+    , paths :: Array (Array LatLngLiteral)
+    , strokeColor :: Maybe String
+    , strokeOpacity :: Maybe Number
+    , strokeWeight :: Maybe Number
+    , visible :: Boolean
+    , zIndex :: Maybe Number
+    }
 
 defPolygonOptions_ :: Array (Array LatLng) -> PolygonOptions
 defPolygonOptions_ = defPolygonOptions <<< map (map LatLng.toLiteral)
@@ -82,20 +82,21 @@ defPolygonOptions paths =
   }
 
 runPolygonOptions :: PolygonOptions -> PolygonOptionsR
-runPolygonOptions options = options
-  { map = orUndefined options.map
-  , fillColor = orUndefined options.fillColor
-  , fillOpacity = orUndefined options.fillOpacity
-  , strokeColor = orUndefined options.strokeColor
-  , strokeOpacity = orUndefined options.strokeOpacity
-  , strokeWeight = orUndefined options.strokeWeight
-  , zIndex = orUndefined options.zIndex
-  }
+runPolygonOptions options =
+  options
+    { map = orUndefined options.map
+    , fillColor = orUndefined options.fillColor
+    , fillOpacity = orUndefined options.fillOpacity
+    , strokeColor = orUndefined options.strokeColor
+    , strokeOpacity = orUndefined options.strokeOpacity
+    , strokeWeight = orUndefined options.strokeWeight
+    , zIndex = orUndefined options.zIndex
+    }
 
 foreign import data Polygon :: Type
 
-instance mvcPolygonObject :: MVCObject Polygon PolygonEvent
-  where addListener = defAddListener
+instance mvcPolygonObject :: MVCObject Polygon PolygonEvent where
+  addListener = defAddListener
 
 foreign import newPolygonImpl :: Fn1 PolygonOptionsR (Effect Polygon)
 

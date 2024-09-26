@@ -3,5 +3,5 @@ module GMaps.MVC.MVCEvent
   , eventName
   ) where
 
-class MVCEvent e
-  where eventName :: e -> String
+class MVCEvent e where
+  eventName :: e -> String
