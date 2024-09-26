@@ -1,13 +1,13 @@
 "use strict";
 
-exports.getEdgeImpl = function (polyMouseEvent) {
+export const getEdgeImpl = function (polyMouseEvent) {
   return polyMouseEvent.edge;
 }
 
-exports.getPathImpl = function (polyMouseEvent) {
+export const getPathImpl = function (polyMouseEvent) {
   return polyMouseEvent.path;
 }
 
-exports.getVertexImpl = function (polyMouseEvent) {
+export const getVertexImpl = function (polyMouseEvent) {
   return polyMouseEvent.vertex;
 }

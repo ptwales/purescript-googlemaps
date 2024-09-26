@@ -1,12 +1,12 @@
 "use strict";
 
-exports.stopImpl = function (mouseEvent) {
+export const stopImpl = function (mouseEvent) {
   return function () {
     mouseEvent.stop();
     return;
   }
 }
 
-exports.getLatLngImpl = function (mouseEvent) {
+export const getLatLngImpl = function (mouseEvent) {
   return mouseEvent.latLng;
 }

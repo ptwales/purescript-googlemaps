@@ -1,41 +1,41 @@
 "use strict";
 
-exports.newPolygonImpl = function(opts) {
+export const newPolygonImpl = function(opts) {
   return function() {
     return new google.maps.Polygon(opts);
   }
 }
 
-exports.deletePolygonImpl = function(poly) {
+export const deletePolygonImpl = function(poly) {
   return function() {
     poly = null;
     return;
   }
 }
 
-exports.getPathsImpl = function(poly) {
+export const getPathsImpl = function(poly) {
   return poly.getPaths();
 }
 
-exports.setPathsImpl = function(poly, paths) {
+export const setPathsImpl = function(poly, paths) {
   return function() {
     poly.setPaths(paths);
     return poly;
   }
 }
 
-exports.getMapImpl = function(disp) {
+export const getMapImpl = function(disp) {
   return disp.getMap();
 }
 
-exports.setMapImpl = function(disp, map) {
+export const setMapImpl = function(disp, map) {
   return function() {
     disp.setMap(map);
     return disp;
   }
 }
 
-exports.setOptionsImpl = function(poly, options) {
+export const setOptionsImpl = function(poly, options) {
   return function() {
     poly.setOptions(options);
     return poly;

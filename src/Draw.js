@@ -1,43 +1,43 @@
 "use strict";
 
-exports.getDraggableImpl = function(draw) {
+export const getDraggableImpl = function(draw) {
   return draw.getDraggable();
 };
 
-exports.getEditableImpl = function(draw) {
+export const getEditableImpl = function(draw) {
   return draw.getEditable();
 };
 
-exports.getPathImpl = function(draw) {
+export const getPathImpl = function(draw) {
   return draw.getPath();
 };
 
-exports.getVisibleImpl = function(draw) {
+export const getVisibleImpl = function(draw) {
   return draw.getVisible();
 };
 
-exports.setDraggableImpl = function(draw, draggable) {
+export const setDraggableImpl = function(draw, draggable) {
   return function() {
     draw.setDraggable(draggable);
     return draw;
   };
 };
 
-exports.setEditableImpl = function(draw, editable) {
+export const setEditableImpl = function(draw, editable) {
   return function() {
     draw.setEditable(editable);
     return draw;
   };
 };
 
-exports.setPathImpl = function(draw, path) {
+export const setPathImpl = function(draw, path) {
   return function() {
     draw.setPath(path);
     return draw;
   };
 };
 
-exports.setVisibleImpl = function(draw, visible) {
+export const setVisibleImpl = function(draw, visible) {
   return function() {
     draw.setVisible(visible);
     return draw;

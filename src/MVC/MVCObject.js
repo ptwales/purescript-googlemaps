@@ -1,6 +1,6 @@
 "use-strict";
 
-exports.addListenerImpl = function(object, eventName, handler) {
+export const addListenerImpl = function(object, eventName, handler) {
   return function() {
     return object.addListener(eventName, function(event) {
       handler(event)();
@@ -8,7 +8,7 @@ exports.addListenerImpl = function(object, eventName, handler) {
   }
 }
 
-exports.removeListenerImpl = function(listener) {
+export const removeListenerImpl = function(listener) {
   return function() {
     listener.remove();
     return;

@@ -1,169 +1,169 @@
 "use strict";
 
-exports.newMarkerImpl = function(opts) {
+export const newMarkerImpl = function(opts) {
   return function() {
     return new google.maps.Marker(opts);
   }
 }
 
-exports.removeMarkerImpl = function(marker) {
+export const removeMarkerImpl = function(marker) {
   return function() {
     marker.setMap(null);
     return marker;
   }
 }
 
-exports.deleteMarkerImpl = function(marker) {
+export const deleteMarkerImpl = function(marker) {
   return function() {
     marker = null;
     return;
   }
 }
 
-exports.getAnimationImpl = function(marker) {
+export const getAnimationImpl = function(marker) {
   return marker.getAnimation();
 }
 
-exports.getClickableImpl = function(marker) {
+export const getClickableImpl = function(marker) {
   return marker.getClickable();
 }
 
-//exports.getCursorImpl = function(marker) {
+//export const getCursorImpl = function(marker) {
 //  return marker.getCursor();
 //}
 
-exports.getDraggableImpl = function(marker) {
+export const getDraggableImpl = function(marker) {
   return marker.getDraggable();
 }
 
-exports.getIconImpl = function(marker) {
+export const getIconImpl = function(marker) {
   return marker.getIcon();
 }
 
-exports.getLabelImpl = function(marker) {
+export const getLabelImpl = function(marker) {
   return marker.getLabel();
 }
 
-exports.getMapImpl = function(marker) {
+export const getMapImpl = function(marker) {
   return marker.getMap();
 }
 
-exports.getOpacityImpl = function(marker) {
+export const getOpacityImpl = function(marker) {
   return marker.getOpacity();
 }
 
-exports.getPositionImpl = function(marker) {
+export const getPositionImpl = function(marker) {
   return marker.getPosition();
 }
 
-//exports.getShapeImpl = function(marker) {
+//export const getShapeImpl = function(marker) {
 //  return marker.getShape();
 //}
 
-exports.getTitleImpl = function(marker) {
+export const getTitleImpl = function(marker) {
   return marker.getTitle();
 }
 
-exports.getVisibleImpl = function(marker) {
+export const getVisibleImpl = function(marker) {
   return marker.getVisible();
 }
 
-exports.getZIndexImpl = function(marker) {
+export const getZIndexImpl = function(marker) {
   return marker.getZIndex();
 }
 
-exports.setAnimationImpl = function(marker, animation) {
+export const setAnimationImpl = function(marker, animation) {
   return function() {
     marker.setAnimation(animation);
     return marker;
   }
 }
 
-exports.setClickableImpl = function(marker, clickable) {
+export const setClickableImpl = function(marker, clickable) {
   return function() {
     marker.setClickable(clickable);
     return marker;
   }
 }
 
-//exports.setCursorImpl = function(marker, cursor) {
+//export const setCursorImpl = function(marker, cursor) {
 //  return function() {
 //    marker.setCursor(cursor);
 //    return marker;
 //  }
 //}
 
-exports.setDraggableImpl = function(marker, draggable) {
+export const setDraggableImpl = function(marker, draggable) {
   return function() {
     marker.setDraggable(draggable);
     return marker;
   }
 }
 
-exports.setIconImpl = function(marker, icon) {
+export const setIconImpl = function(marker, icon) {
   return function() {
     marker.setIcon(icon);
     return marker;
   }
 }
 
-exports.setLabelImpl = function(marker, label) {
+export const setLabelImpl = function(marker, label) {
   return function() {
     marker.setLabel(label);
     return marker;
   }
 }
 
-exports.setMapImpl = function(marker, map) {
+export const setMapImpl = function(marker, map) {
   return function() {
     marker.setMap(map);
     return marker;
   }
 }
 
-exports.setOpacityImpl = function(marker, opacity) {
+export const setOpacityImpl = function(marker, opacity) {
   return function() {
     marker.setOpacity(opacity);
     return marker;
   }
 }
 
-exports.setOptionsImpl = function(marker, options) {
+export const setOptionsImpl = function(marker, options) {
   return function() {
     marker.setOptions(options);
     return marker;
   }
 }
 
-exports.setPositionImpl = function(marker, latlng) {
+export const setPositionImpl = function(marker, latlng) {
   return function() {
     marker.setPosition(latlng);
     return marker;
   }
 }
 
-//exports.setShapeImpl = function(marker, shape) {
+//export const setShapeImpl = function(marker, shape) {
 //  return function() {
 //    marker.setShape(shape);
 //    return marker;
 //  }
 //}
 
-exports.setTitleImpl = function(marker, title) {
+export const setTitleImpl = function(marker, title) {
   return function() {
     marker.setTitle(title);
     return marker;
   }
 }
 
-exports.setVisibleImpl = function(marker, visible) {
+export const setVisibleImpl = function(marker, visible) {
   return function() {
     marker.setVisible(visible);
     return marker;
   }
 }
 
-exports.setZIndexImpl = function(marker, zIndex) {
+export const setZIndexImpl = function(marker, zIndex) {
   return function() {
     marker.setZIndex(zIndex);
     return marker;
