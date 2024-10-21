@@ -9,6 +9,8 @@ package:
     - web-html
   name: googlemaps
 workspace:
+  packageSet:
+    registry: 60.5.0
   extraPackages:
     spec-mocha:
       dependencies:
@@ -18,5 +20,3 @@ workspace:
         - spec
       git: https://github.com/owickstrom/purescript-spec-mocha.git
       ref: v5.1.0
-  packageSet:
-    registry: 59.0.0
