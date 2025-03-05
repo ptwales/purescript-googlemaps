@@ -24,7 +24,7 @@ jobs:
       - name: install
         run: npm install
       - name: cache purescript dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-spago-${{ hashFiles('**/*.yaml') }}
           path: |
