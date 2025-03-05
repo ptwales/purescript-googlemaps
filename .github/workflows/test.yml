@@ -47,4 +47,5 @@ jobs:
       - name: automerge dependabot PRs
         uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           target: minor
